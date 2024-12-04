@@ -1,30 +1,33 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
-/**
- *
- * @author Admin
- */
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class mainmenu implements ActionListener{
+public class mainmenu implements MouseListener{
 
     JFrame frame;
-    JButton start;
-    JButton settings; 
-    JButton quit;
+    JLabel start;
+    JLabel settings; 
+    JLabel quit;
     ImageIcon gameBG;
+    ImageIcon starticon;
+    ImageIcon settingsicon;
+    ImageIcon quiticon;
+    ImageIcon img;
     
     public mainmenu() {
         frame = new JFrame();
-        start = new JButton("Start");
-        settings = new JButton("Settings");
-        quit = new JButton("Quit");
+        
+        starticon=new ImageIcon("Images/start.png");    //259x80 px
+        img=new ImageIcon(starticon.getImage().getScaledInstance(207, 80, Image.SCALE_DEFAULT));
+        start=new JLabel(img);
+        
+        settingsicon=new ImageIcon("Images/settings.png");    //259x80 px
+        img=new ImageIcon(settingsicon.getImage().getScaledInstance(207, 80, Image.SCALE_DEFAULT));
+        settings=new JLabel(img);
+
+        quiticon=new ImageIcon("Images/quit.png");    //259x80 px
+        img=new ImageIcon(quiticon.getImage().getScaledInstance(207, 80, Image.SCALE_DEFAULT));
+        quit=new JLabel(img);
         
         gameBG = new ImageIcon("Images/mainmenuBG.png");
         frame.setContentPane(new JLabel(gameBG));
@@ -33,7 +36,7 @@ public class mainmenu implements ActionListener{
     public void setFrame() {
         frame.setLayout(new GraphPaperLayout(new Dimension (10,10)));
         
-        frame.add(start, new Rectangle (1,1,8,2));
+        frame.add(start, new Rectangle (1,1,8,5));
         frame.add(settings, new Rectangle (1,4,8,2));
         frame.add(quit, new Rectangle (1,7,8,2));
         
@@ -41,9 +44,11 @@ public class mainmenu implements ActionListener{
         frame.setVisible(true);
         frame.setDefaultCloseOperation(frame.DISPOSE_ON_CLOSE);
         
-        start.addActionListener(this);
-        settings.addActionListener(this);
-        quit.addActionListener(this);
+        addListeners();
+    }
+    
+    public void addListeners() {
+        start.addMouseListener(this);
     }
     
     public static void main(String[] args) {
@@ -52,11 +57,25 @@ public class mainmenu implements ActionListener{
     }
     
     @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == start) {
+    public void mouseClicked(MouseEvent e) {
+        if(e.getSource()==start){
+            start ng=new start();
+            Point p=frame.getLocation();
+            ng.setFrame();
+            ng.frame.setLocation(p);
             frame.dispose();
-            start_srn click= new start_srn();
-            click.setFrame();
         }
     }
+
+    @Override
+    public void mousePressed(MouseEvent e) {}
+
+    @Override
+    public void mouseReleased(MouseEvent e) {}
+
+    @Override
+    public void mouseEntered(MouseEvent e) {}
+
+    @Override
+    public void mouseExited(MouseEvent e) {}
 }
