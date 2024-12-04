@@ -65,6 +65,20 @@ public class mainmenu implements MouseListener{
             ng.frame.setLocation(p);
             frame.dispose();
         }
+        else if(e.getSource()==settings){
+            /*start ng=new start();
+            Point p=frame.getLocation();
+            ng.setFrame();
+            ng.frame.setLocation(p);
+            frame.dispose();*/
+        }
+        else if(e.getSource()==quit){
+            /*start ng=new start();
+            Point p=frame.getLocation();
+            ng.setFrame();
+            ng.frame.setLocation(p);
+            frame.dispose();*/
+        }
     }
 
     @Override
