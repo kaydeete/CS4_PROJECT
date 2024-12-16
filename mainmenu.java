@@ -18,15 +18,15 @@ public class mainmenu implements MouseListener{
         frame = new JFrame();
         
         starticon=new ImageIcon("Images/start.png");    //259x80 px
-        img=new ImageIcon(starticon.getImage().getScaledInstance(207, 80, Image.SCALE_DEFAULT));
+        img=new ImageIcon(starticon.getImage().getScaledInstance(190, 80, Image.SCALE_DEFAULT));
         start=new JLabel(img);
         
         settingsicon=new ImageIcon("Images/settings.png");    //259x80 px
-        img=new ImageIcon(settingsicon.getImage().getScaledInstance(207, 80, Image.SCALE_DEFAULT));
+        img=new ImageIcon(settingsicon.getImage().getScaledInstance(190, 80, Image.SCALE_DEFAULT));
         settings=new JLabel(img);
 
         quiticon=new ImageIcon("Images/quit.png");    //259x80 px
-        img=new ImageIcon(quiticon.getImage().getScaledInstance(207, 80, Image.SCALE_DEFAULT));
+        img=new ImageIcon(quiticon.getImage().getScaledInstance(190, 80, Image.SCALE_DEFAULT));
         quit=new JLabel(img);
         
         gameBG = new ImageIcon("Images/mainmenuBG.png");
