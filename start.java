@@ -7,10 +7,13 @@ public class start implements MouseListener{
     
     JLabel nxtbtn;
     JLabel prevbtn;
+    
     JTextArea chatfield;
     JLabel chatbox;
     int chatseq=0;
     ImageIcon chatimg;
+    
+    JLabel breadboard;
     JLabel amper;
     
     ImageIcon gameBG;
@@ -25,7 +28,7 @@ public class start implements MouseListener{
         
         
         JPanel backgroundPanel = new JPanel() {
-            private final Image gameBG = new ImageIcon("D:/Images/cutscene1.png").getImage();
+            private final Image gameBG = new ImageIcon("Images/cutscene1.png").getImage();
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
@@ -54,6 +57,11 @@ public class start implements MouseListener{
         
         imgicon = new ImageIcon("Images/amper.png");
         img = new ImageIcon(imgicon.getImage().getScaledInstance(160, 320, Image.SCALE_DEFAULT));
+        amper = new JLabel(img);
+        
+        imgicon = new ImageIcon("Images/breadboard.png");
+        img = new ImageIcon(imgicon.getImage().getScaledInstance(160,320, Image.SCALE_DEFAULT));
+        breadboard = new JLabel(img);
         
         chatimg = new ImageIcon("Images/chatimg.png");
         chatbox = new JLabel(chatimg);
@@ -64,8 +72,12 @@ public class start implements MouseListener{
     public void setFrame() {
         frame.setLayout(new GraphPaperLayout(new Dimension (25,10)));
         
-        
-        
+        frame.add(chatbox, new Rectangle(0,8,25,3));
+        frame.add(chatfield, new Rectangle(1,9,25,1));
+        frame.add(prevbtn, new Rectangle(0,9,3,1));
+        frame.add(nxtbtn, new Rectangle(22,9,3,1));
+        frame.add(amper, new Rectangle(1,3,3,5));
+        frame.add(breadboard, new Rectangle(18,3,3,4));
         frame.setSize(700,500);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(frame.DISPOSE_ON_CLOSE);
@@ -73,14 +85,20 @@ public class start implements MouseListener{
         addListeners();
     }
     
+    public void hideAll() {
+        amper.setVisible(false);
+        breadboard.setVisible(false);
+    }
+    
     public void addListeners() {
         prevbtn.addMouseListener(this);
         nxtbtn.addMouseListener(this);
     }
     
-    public static void main(String[] args) {
-        start screen = new start();
-        screen.setFrame();
+    public void setElements() {
+        hideAll();
+        if(chatseq == 0) amper.setVisible(true);
+        else if(chatseq == 1) breadboard.setVisible(true);
     }
 
     @Override
@@ -90,6 +108,7 @@ public class start implements MouseListener{
                 chatseq--;
                 chatfield.setText(chat[chatseq]);
             }
+            setElements();
         }
         else if(e.getSource()==nxtbtn) {
             if(chatseq+1<chat.length) {
@@ -104,6 +123,7 @@ public class start implements MouseListener{
                 frame.dispose();
                 newgameBG.clip.stop();*/
             }
+            setElements();
         }
     }
 

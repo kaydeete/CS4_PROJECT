@@ -19,20 +19,20 @@ public class mainmenu implements MouseListener{
         frame = new JFrame();
         click = new PlaySound();
         
-        starticon=new ImageIcon("D:/Images/start.png");    //259x80 px
+        starticon=new ImageIcon("Images/start.png");    //259x80 px
         img=new ImageIcon(starticon.getImage().getScaledInstance(300, 200, Image.SCALE_DEFAULT));
         start=new JLabel(img);
         
-        settingsicon=new ImageIcon("D:/Images/settings.png");    //259x80 px
+        settingsicon=new ImageIcon("Images/settings.png");    //259x80 px
         img=new ImageIcon(settingsicon.getImage().getScaledInstance(300, 200, Image.SCALE_DEFAULT));
         settings=new JLabel(img);
 
-        quiticon=new ImageIcon("D:/Images/quit.png");    //259x80 px
+        quiticon=new ImageIcon("Images/quit.png");    //259x80 px
         img=new ImageIcon(quiticon.getImage().getScaledInstance(300, 200, Image.SCALE_DEFAULT));
         quit=new JLabel(img);
         
         JPanel backgroundPanel = new JPanel() {
-            private final Image gameBG = new ImageIcon("D:/Images/mainmenuBG.png").getImage();
+            private final Image gameBG = new ImageIcon("Images/mainmenuBG.png").getImage();
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
@@ -104,4 +104,3 @@ public class mainmenu implements MouseListener{
     @Override
     public void mouseExited(MouseEvent e) {}
 }
-
