@@ -7,7 +7,7 @@ public class start implements MouseListener{
     
     JLabel nxtbtn;
     JLabel prevbtn;
-    JTextField chatfield;
+    JTextArea chatfield;
     JLabel chatbox;
     int chatseq=0;
     ImageIcon chatimg;
@@ -44,7 +44,7 @@ public class start implements MouseListener{
         
         chatimg = new ImageIcon("Images/chatimg.png");
         chatbox = new JLabel(chatimg);
-        chatfield = new JTextField(chat[chatseq]);
+        chatfield = new JTextArea(chat[chatseq]);
         
         ms = new MyStyle();
     }
@@ -68,6 +68,20 @@ public class start implements MouseListener{
             if(chatseq-1>=0){
                 chatseq--;
                 chatfield.setText(chat[chatseq]);
+            }
+        }
+        else if(e.getSource()==nxtbtn) {
+            if(chatseq+1<chat.length) {
+                chatseq++;
+                chatfield.setText(chat[chatseq]);
+            }
+            else{
+                /*maze1 mm=new maze1();
+                Point p=frame.getLocation();
+                mm.setFrame();
+                mm.frame.setLocation(p);
+                frame.dispose();
+                newgameBG.clip.stop();*/
             }
         }
     }
