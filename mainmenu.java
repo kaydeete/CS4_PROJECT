@@ -18,15 +18,15 @@ public class mainmenu implements MouseListener{
         frame = new JFrame();
         
         starticon=new ImageIcon("Images/start.png");    //259x80 px
-        img=new ImageIcon(starticon.getImage().getScaledInstance(190, 80, Image.SCALE_DEFAULT));
+        img=new ImageIcon(starticon.getImage().getScaledInstance(300, 200, Image.SCALE_DEFAULT));
         start=new JLabel(img);
         
         settingsicon=new ImageIcon("Images/settings.png");    //259x80 px
-        img=new ImageIcon(settingsicon.getImage().getScaledInstance(190, 80, Image.SCALE_DEFAULT));
+        img=new ImageIcon(settingsicon.getImage().getScaledInstance(300, 200, Image.SCALE_DEFAULT));
         settings=new JLabel(img);
 
         quiticon=new ImageIcon("Images/quit.png");    //259x80 px
-        img=new ImageIcon(quiticon.getImage().getScaledInstance(190, 80, Image.SCALE_DEFAULT));
+        img=new ImageIcon(quiticon.getImage().getScaledInstance(300, 200, Image.SCALE_DEFAULT));
         quit=new JLabel(img);
         
         gameBG = new ImageIcon("Images/mainmenuBG.png");
@@ -36,7 +36,7 @@ public class mainmenu implements MouseListener{
     public void setFrame() {
         frame.setLayout(new GraphPaperLayout(new Dimension (10,10)));
         
-        frame.add(start, new Rectangle (1,1,8,5));
+        frame.add(start, new Rectangle (1,1,8,2));
         frame.add(settings, new Rectangle (1,4,8,2));
         frame.add(quit, new Rectangle (1,7,8,2));
         
@@ -49,6 +49,8 @@ public class mainmenu implements MouseListener{
     
     public void addListeners() {
         start.addMouseListener(this);
+        settings.addMouseListener(this);
+        quit.addMouseListener(this);
     }
     
     public static void main(String[] args) {
@@ -66,18 +68,14 @@ public class mainmenu implements MouseListener{
             frame.dispose();
         }
         else if(e.getSource()==settings){
-            /*start ng=new start();
+            settings ng=new settings();
             Point p=frame.getLocation();
             ng.setFrame();
             ng.frame.setLocation(p);
-            frame.dispose();*/
+            frame.dispose();
         }
         else if(e.getSource()==quit){
-            /*start ng=new start();
-            Point p=frame.getLocation();
-            ng.setFrame();
-            ng.frame.setLocation(p);
-            frame.dispose();*/
+            frame.dispose();
         }
     }
 
