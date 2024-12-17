@@ -7,13 +7,18 @@ public class start implements MouseListener{
     
     JLabel nxtbtn;
     JLabel prevbtn;
-    JLabel chatBox;
+    JTextField chatfield;
+    JLabel chatbox;
+    int chatseq=0;
+    ImageIcon chatimg;
     JLabel amper;
     
     ImageIcon gameBG;
     ImageIcon img;
     ImageIcon imgicon;
     String chat[];
+    
+    MyStyle ms;
     
     public start() {
         frame = new JFrame();
@@ -36,21 +41,36 @@ public class start implements MouseListener{
         
         imgicon = new ImageIcon("Images/amper.png");
         img = new ImageIcon(imgicon.getImage().getScaledInstance(160, 320, Image.SCALE_DEFAULT));
+        
+        chatimg = new ImageIcon("Images/chatimg.png");
+        chatbox = new JLabel(chatimg);
+        chatfield = new JTextField(chat[chatseq]);
+        
+        ms = new MyStyle();
     }
     public void setFrame() {
-        frame.setLayout(new GraphPaperLayout(new Dimension (10,10)));
+        frame.setLayout(new GraphPaperLayout(new Dimension (25,10)));
         frame.setSize(700,500);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(frame.DISPOSE_ON_CLOSE);
+        
+        addListeners();
     }
     
-    public static void main(String[] args) {
-        start screen = new start();
-        screen.setFrame();
+    public void addListeners() {
+        prevbtn.addMouseListener(this);
+        nxtbtn.addMouseListener(this);
     }
 
     @Override
-    public void mouseClicked(MouseEvent e) {}
+    public void mouseClicked(MouseEvent e) {
+        if(e.getSource()==prevbtn) {
+            if(chatseq-1>=0){
+                chatseq--;
+                chatfield.setText(chat[chatseq]);
+            }
+        }
+    }
 
     @Override
     public void mousePressed(MouseEvent e) {}
