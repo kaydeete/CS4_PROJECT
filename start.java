@@ -22,8 +22,21 @@ public class start implements MouseListener{
     
     public start() {
         frame = new JFrame();
-        gameBG = new ImageIcon("Images/cutscene1.png");
-        frame.setContentPane(new JLabel(gameBG));
+        
+        
+        JPanel backgroundPanel = new JPanel() {
+            private final Image gameBG = new ImageIcon("D:/Images/cutscene1.png").getImage();
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                
+                g.drawImage(gameBG, 0, 0, getWidth(), getHeight(), this);
+            }
+        };
+        
+        backgroundPanel.setLayout(new BorderLayout());
+        frame.setContentPane(backgroundPanel);
+    
         
         chat = new String[] {
             "Amper heard an unusual sound in his room...",
@@ -50,6 +63,9 @@ public class start implements MouseListener{
     }
     public void setFrame() {
         frame.setLayout(new GraphPaperLayout(new Dimension (25,10)));
+        
+        
+        
         frame.setSize(700,500);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(frame.DISPOSE_ON_CLOSE);
@@ -60,6 +76,11 @@ public class start implements MouseListener{
     public void addListeners() {
         prevbtn.addMouseListener(this);
         nxtbtn.addMouseListener(this);
+    }
+    
+    public static void main(String[] args) {
+        start screen = new start();
+        screen.setFrame();
     }
 
     @Override
