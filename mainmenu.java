@@ -8,7 +8,7 @@ public class mainmenu implements MouseListener{
     JLabel start;
     JLabel settings; 
     JLabel quit;
-    ImageIcon gameBG;
+    //ImageIcon gameBG;
     ImageIcon starticon;
     ImageIcon settingsicon;
     ImageIcon quiticon;
@@ -31,6 +31,8 @@ public class mainmenu implements MouseListener{
         img=new ImageIcon(quiticon.getImage().getScaledInstance(300, 200, Image.SCALE_DEFAULT));
         quit=new JLabel(img);
         
+        
+        /*gameBG*/
         JPanel backgroundPanel = new JPanel() {
             private final Image gameBG = new ImageIcon("Images/mainmenuBG.png").getImage();
             @Override
@@ -52,8 +54,10 @@ public class mainmenu implements MouseListener{
         frame.add(settings, new Rectangle (1,4,8,2));
         frame.add(quit, new Rectangle (1,7,8,2));
         
-        frame.setSize(700,500);
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        //frame.setUndecorated(true);
         frame.setVisible(true);
+        frame.setResizable(false);
         frame.setDefaultCloseOperation(frame.DISPOSE_ON_CLOSE);
         
         addListeners();

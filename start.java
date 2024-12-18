@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+
 public class start implements MouseListener{
     JFrame frame;
     
@@ -48,19 +49,19 @@ public class start implements MouseListener{
         };
         
         imgicon = new ImageIcon("Images/nxtbtn.png");
-        img = new ImageIcon(imgicon.getImage().getScaledInstance(66, 30, Image.SCALE_DEFAULT));
+        img = new ImageIcon(imgicon.getImage().getScaledInstance(198, 90, Image.SCALE_DEFAULT));
         nxtbtn = new JLabel(img);
         
         imgicon = new ImageIcon("Images/prevbtn.png");
-        img = new ImageIcon(imgicon.getImage().getScaledInstance(66, 30, Image.SCALE_DEFAULT));
+        img = new ImageIcon(imgicon.getImage().getScaledInstance(198, 90, Image.SCALE_DEFAULT));
         prevbtn = new JLabel(img);
         
         imgicon = new ImageIcon("Images/amper.png");
-        img = new ImageIcon(imgicon.getImage().getScaledInstance(160, 320, Image.SCALE_DEFAULT));
+        img = new ImageIcon(imgicon.getImage().getScaledInstance(750, 480, Image.SCALE_DEFAULT));
         amper = new JLabel(img);
         
         imgicon = new ImageIcon("Images/breadboard.png");
-        img = new ImageIcon(imgicon.getImage().getScaledInstance(160,320, Image.SCALE_DEFAULT));
+        img = new ImageIcon(imgicon.getImage().getScaledInstance(600,320, Image.SCALE_DEFAULT));
         breadboard = new JLabel(img);
         
         chatimg = new ImageIcon("Images/chatimg.png");
@@ -71,15 +72,24 @@ public class start implements MouseListener{
     }
     public void setFrame() {
         frame.setLayout(new GraphPaperLayout(new Dimension (25,10)));
-        
-        frame.add(chatbox, new Rectangle(0,8,25,3));
-        frame.add(chatfield, new Rectangle(1,9,25,1));
         frame.add(prevbtn, new Rectangle(0,9,3,1));
         frame.add(nxtbtn, new Rectangle(22,9,3,1));
-        frame.add(amper, new Rectangle(1,3,3,5));
-        frame.add(breadboard, new Rectangle(18,3,3,4));
-        frame.setSize(700,500);
+        
+        frame.add(chatbox, new Rectangle(1,9,26,10));
+        frame.add(chatfield, new Rectangle(0,9,26,2));
+        frame.add(amper, new Rectangle(5,4,3,5));
+        frame.add(breadboard, new Rectangle(16,3,5,4));
+        
+        chatfield.setBackground(new Color(51,44,42));
+        /*
+        chatfield.setHorizontalAlignment(JTextArea.CENTER_ALIGNMENT);
+        chatfield.setForeground(Color.WHITE);
+        chatfield.setFont(new Font("Serif", Font.PLAIN, 14));
+        */
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        //frame.setUndecorated(true);
         frame.setVisible(true);
+        frame.setResizable(false);
         frame.setDefaultCloseOperation(frame.DISPOSE_ON_CLOSE);
         
         addListeners();
