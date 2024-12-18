@@ -76,7 +76,7 @@ public class mainmenu implements MouseListener{
     
     @Override
     public void mouseClicked(MouseEvent e) {
-        click.playEffect("D:/Audio/click.wav");
+        click.playEffect("Audio/click.wav");
         if(e.getSource()==start){
             start ng=new start();
             Point p=frame.getLocation();

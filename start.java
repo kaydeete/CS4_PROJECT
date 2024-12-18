@@ -44,7 +44,7 @@ public class start implements MouseListener{
         
         chat = new String[] {
             "Amper heard an unusual sound in his room...",
-            "The breadboard was quivering. he took a step closer.",
+            "The breadboard was quivering so he took a step closer.",
             "Suddenly, the breadboard sucked him in!!"
         };
         
@@ -57,7 +57,7 @@ public class start implements MouseListener{
         prevbtn = new JLabel(img);
         
         imgicon = new ImageIcon("Images/amper.png");
-        img = new ImageIcon(imgicon.getImage().getScaledInstance(750, 480, Image.SCALE_DEFAULT));
+        img = new ImageIcon(imgicon.getImage().getScaledInstance(740, 450, Image.SCALE_DEFAULT));
         amper = new JLabel(img);
         
         imgicon = new ImageIcon("Images/breadboard.png");
@@ -81,16 +81,22 @@ public class start implements MouseListener{
         frame.add(breadboard, new Rectangle(16,3,5,4));
         
         chatfield.setBackground(new Color(51,44,42));
-        /*
-        chatfield.setHorizontalAlignment(JTextArea.CENTER_ALIGNMENT);
+
+        chatfield.setAlignmentX(JTextArea.CENTER_ALIGNMENT); 
+        chatfield.setAlignmentY(JTextArea.CENTER_ALIGNMENT); 
+        //chatfield.setHorizontalAlignment(JTextArea.CENTER_ALIGNMENT);
         chatfield.setForeground(Color.WHITE);
-        chatfield.setFont(new Font("Serif", Font.PLAIN, 14));
-        */
+        chatfield.setFont(new Font("Segoe UI", Font.PLAIN, 30));
+        chatfield.setEditable(false); // Prevent user input
+        chatfield.setLineWrap(true);  // Wrap text
+        chatfield.setWrapStyleWord(true); // Wrap at word boundaries
+
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         //frame.setUndecorated(true);
         frame.setVisible(true);
         frame.setResizable(false);
         frame.setDefaultCloseOperation(frame.DISPOSE_ON_CLOSE);
+        chatfield.setVisible(true);
         
         addListeners();
     }
@@ -107,8 +113,15 @@ public class start implements MouseListener{
     
     public void setElements() {
         hideAll();
-        if(chatseq == 0) amper.setVisible(true);
-        else if(chatseq == 1) breadboard.setVisible(true);
+        if(chatseq == 0) {
+            breadboard.setVisible(true);
+            amper.setVisible(true);
+        }
+        else if(chatseq == 1) {
+            breadboard.setVisible(true);
+            amper.setVisible(true);
+            frame.add(amper, new Rectangle(12,4,3,5));
+        }
     }
 
     @Override
