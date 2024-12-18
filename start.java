@@ -98,7 +98,6 @@ public class start implements MouseListener{
         chatfield.setFont(new Font("Segoe UI", Font.PLAIN, 30));
         chatfield.setForeground(Color.WHITE);
         chatfield.setEditable(false);
-        chatfield.setOpaque(false);  // Optional: Make the background transparent
         StyledDocument doc = chatfield.getStyledDocument();
         SimpleAttributeSet center = new SimpleAttributeSet();
         StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
