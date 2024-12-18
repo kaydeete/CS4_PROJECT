@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-
+import javax.swing.text.*;
 
 public class start implements MouseListener{
     JFrame frame;
@@ -9,7 +9,7 @@ public class start implements MouseListener{
     JLabel nxtbtn;
     JLabel prevbtn;
     
-    JTextArea chatfield;
+    JTextPane chatfield;
     JLabel chatbox;
     int chatseq=0;
     ImageIcon chatimg;
@@ -66,7 +66,8 @@ public class start implements MouseListener{
         
         chatimg = new ImageIcon("Images/chatimg.png");
         chatbox = new JLabel(chatimg);
-        chatfield = new JTextArea(chat[chatseq]);
+        chatfield = new JTextPane();
+        styleChatField(chat[chatseq]);
         
         ms = new MyStyle();
     }
@@ -81,16 +82,7 @@ public class start implements MouseListener{
         frame.add(breadboard, new Rectangle(16,3,5,4));
         
         chatfield.setBackground(new Color(51,44,42));
-
-        chatfield.setAlignmentX(JTextArea.CENTER_ALIGNMENT); 
-        chatfield.setAlignmentY(JTextArea.CENTER_ALIGNMENT); 
-        //chatfield.setHorizontalAlignment(JTextArea.CENTER_ALIGNMENT);
-        chatfield.setForeground(Color.WHITE);
-        chatfield.setFont(new Font("Segoe UI", Font.PLAIN, 30));
-        chatfield.setEditable(false); // Prevent user input
-        chatfield.setLineWrap(true);  // Wrap text
-        chatfield.setWrapStyleWord(true); // Wrap at word boundaries
-
+        
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         //frame.setUndecorated(true);
         frame.setVisible(true);
@@ -99,6 +91,18 @@ public class start implements MouseListener{
         chatfield.setVisible(true);
         
         addListeners();
+    }
+    
+    public void styleChatField(String text) {
+        chatfield.setText(text);
+        chatfield.setFont(new Font("Segoe UI", Font.PLAIN, 30));
+        chatfield.setForeground(Color.WHITE);
+        chatfield.setEditable(false);
+        chatfield.setOpaque(false);  // Optional: Make the background transparent
+        StyledDocument doc = chatfield.getStyledDocument();
+        SimpleAttributeSet center = new SimpleAttributeSet();
+        StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
+        doc.setParagraphAttributes(0, doc.getLength(), center, false);
     }
     
     public void hideAll() {
