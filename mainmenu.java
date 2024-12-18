@@ -55,7 +55,7 @@ public class mainmenu implements MouseListener{
         frame.add(quit, new Rectangle (1,7,8,2));
         
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        //frame.setUndecorated(true);
+        frame.setUndecorated(true);
         frame.setVisible(true);
         frame.setResizable(false);
         frame.setDefaultCloseOperation(frame.DISPOSE_ON_CLOSE);
