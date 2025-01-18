@@ -5,8 +5,10 @@ import java.awt.event.*;
 public class settings implements MouseListener{
     
     JFrame frame;
-    JLabel start;
-    JLabel settings; 
+    JLabel volumei;
+    ImageIcon volumeicon;
+    JLabel volumes; 
+    ImageIcon volumeslider; 
     JLabel quit;
     //ImageIcon gameBG;
     ImageIcon quiticon;
@@ -18,6 +20,14 @@ public class settings implements MouseListener{
         quiticon=new ImageIcon("Images/return.png");    //259x80 px
         img=new ImageIcon(quiticon.getImage().getScaledInstance(300, 200, Image.SCALE_DEFAULT));
         quit=new JLabel(img);
+        
+        volumeicon=new ImageIcon("Images/soundvis.png");    //259x80 px
+        img=new ImageIcon(volumeicon.getImage().getScaledInstance(300, 200, Image.SCALE_DEFAULT));
+        volumei=new JLabel(img);
+        
+        volumeslider=new ImageIcon("Images/soundslider.png");    //259x80 px
+        img=new ImageIcon(volumeslider.getImage().getScaledInstance(900, 600, Image.SCALE_DEFAULT));
+        volumes=new JLabel(img);
         
         JPanel backgroundPanel = new JPanel() {
             private final Image gameBG = new ImageIcon("Images/mainmenuBG.png").getImage();
@@ -37,6 +47,9 @@ public class settings implements MouseListener{
         frame.setLayout(new GraphPaperLayout(new Dimension (10,10)));
         
         frame.add(quit, new Rectangle (1,1,8,2));
+        frame.add(volumei, new Rectangle (1,3,3,2));
+        frame.add(volumes, new Rectangle (2,3,9,2));
+        
         
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setUndecorated(true);
@@ -50,6 +63,12 @@ public class settings implements MouseListener{
     public void addListeners() {
         quit.addMouseListener(this);
     }
+    
+    public static void main(String[] args) {
+        settings screen = new settings();
+        screen.setFrame();
+    }
+    
 
     @Override
     public void mouseClicked(MouseEvent e) {
