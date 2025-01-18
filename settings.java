@@ -15,7 +15,7 @@ public class settings implements MouseListener{
     public settings(){
         frame = new JFrame();
         
-        quiticon=new ImageIcon("Images/quit.png");    //259x80 px
+        quiticon=new ImageIcon("Images/return.png");    //259x80 px
         img=new ImageIcon(quiticon.getImage().getScaledInstance(300, 200, Image.SCALE_DEFAULT));
         quit=new JLabel(img);
         
