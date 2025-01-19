@@ -13,8 +13,6 @@ public class maze1 implements MouseListener{
     JLabel chatbox;
     ImageIcon chatimg;
 
-    JLabel whirl;
-    JLabel breadboard;
     JLabel amper;
 
     ImageIcon gameBG;
@@ -33,14 +31,38 @@ public class maze1 implements MouseListener{
         imgicon = new ImageIcon("Images/prevbtn.png");
         img = new ImageIcon(imgicon.getImage().getScaledInstance(198, 90, Image.SCALE_DEFAULT));
         prevbtn = new JLabel(img);
-
-        imgicon = new ImageIcon("Images/amper.png");
-        img = new ImageIcon(imgicon.getImage().getScaledInstance(740, 450, Image.SCALE_DEFAULT));
-        amper = new JLabel(img);
         
         chatimg = new ImageIcon("Images/chatimg.png");
         chatbox = new JLabel(chatimg);
         chatfield = new JTextPane();
+        
+        chat = new String[]{
+            "Inside the breadboard is a MAZE"
+        };
+        
+        JPanel backgroundPanel = new JPanel() {
+            private final Image gameBG = new ImageIcon("Images/maze1scrap.png").getImage();
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                
+                g.drawImage(gameBG, 0, 0, getWidth(), getHeight(), this);
+            }
+        };
+        
+        backgroundPanel.setLayout(new BorderLayout());
+        frame.setContentPane(backgroundPanel);
+    }
+    
+    public void styleChatField(String text) {
+        chatfield.setText(text);
+        chatfield.setFont(new Font("Segoe UI", Font.PLAIN, 30));
+        chatfield.setForeground(Color.WHITE);
+        chatfield.setEditable(false);
+        StyledDocument doc = chatfield.getStyledDocument();
+        SimpleAttributeSet center = new SimpleAttributeSet();
+        StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
+        doc.setParagraphAttributes(0, doc.getLength(), center, false);
     }
     
     public void setFrame() {
@@ -50,7 +72,7 @@ public class maze1 implements MouseListener{
 
         frame.add(chatbox, new Rectangle(1, 9, 26, 10));
         frame.add(chatfield, new Rectangle(0, 9, 26, 2));
-        frame.add(amper, new Rectangle(5, 4, 3, 5));
+        chatfield.setBackground(new Color(51, 44, 42));
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setUndecorated(true);
         frame.setVisible(true);
@@ -61,7 +83,6 @@ public class maze1 implements MouseListener{
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        //write
     }
 
     @Override
