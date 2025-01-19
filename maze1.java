@@ -42,6 +42,7 @@ public class maze1 implements MouseListener{
         chat = new String[]{
             "Inside the breadboard is a MAZE"
         };
+        styleChatField(chat[0]);
         
         JPanel backgroundPanel = new JPanel() {
             private final Image gameBG = new ImageIcon("Images/maze1scrap.png").getImage();

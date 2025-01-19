@@ -64,6 +64,11 @@ public class settings implements MouseListener{
         quit.addMouseListener(this);
     }
     
+    public static void main(String[] args) {
+        settings screen = new settings();
+        screen.setFrame();
+    }
+    
 
     @Override
     public void mouseClicked(MouseEvent e) {
