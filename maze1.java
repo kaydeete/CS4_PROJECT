@@ -40,9 +40,14 @@ public class maze1 implements MouseListener{
         chatfield = new JTextPane();
         
         chat = new String[]{
-            "Inside the breadboard is a MAZE"
+            "Inside the breadboard is a MAZE",
+            "Go to the items and click to find the mystery!"
         };
+        
         styleChatField(chat[0]);
+        
+        prevbtn.addMouseListener(this);
+        nxtbtn.addMouseListener(this);
         
         JPanel backgroundPanel = new JPanel() {
             private final Image gameBG = new ImageIcon("Images/maze1scrap.png").getImage();
@@ -87,26 +92,17 @@ public class maze1 implements MouseListener{
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if(e.getSource()==prevbtn) {
-            if(chatseq-1>=0){
+        if (e.getSource() == prevbtn) {
+            if (chatseq - 1 >= 0) {
                 chatseq--;
                 chatfield.setText(chat[chatseq]);
             }
             setElements();
-        }
-        else if(e.getSource()==nxtbtn) {
-            if(chatseq+1<chat.length) {
+        } else if (e.getSource() == nxtbtn) {
+            if (chatseq + 1 < chat.length) {
                 chatseq++;
                 chatfield.setText(chat[chatseq]);
-            }
-            else{
-                maze1 mm=new maze1();
-                Point p=frame.getLocation();
-                mm.setFrame();
-                mm.frame.setLocation(p);
-                frame.dispose();
-            }
-            setElements();
+            }        
         }
     }
 

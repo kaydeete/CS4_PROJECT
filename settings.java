@@ -10,9 +10,11 @@ public class settings implements MouseListener{
     JLabel volumes; 
     ImageIcon volumeslider; 
     JLabel quit;
+    JLabel howtoplay;
     //ImageIcon gameBG;
     ImageIcon quiticon;
     ImageIcon img;
+    ImageIcon howtoplayicon;
 
     public settings(){
         frame = new JFrame();
@@ -28,6 +30,10 @@ public class settings implements MouseListener{
         volumeslider=new ImageIcon("Images/soundslider.png");    //259x80 px
         img=new ImageIcon(volumeslider.getImage().getScaledInstance(900, 600, Image.SCALE_DEFAULT));
         volumes=new JLabel(img);
+        
+        howtoplayicon=new ImageIcon("Images/howtoplay.png");    //259x80 px
+        img=new ImageIcon(howtoplayicon.getImage().getScaledInstance(300, 200, Image.SCALE_DEFAULT));
+        howtoplay=new JLabel(img);
         
         JPanel backgroundPanel = new JPanel() {
             private final Image gameBG = new ImageIcon("Images/mainmenuBG.png").getImage();
@@ -49,7 +55,7 @@ public class settings implements MouseListener{
         frame.add(quit, new Rectangle (1,1,8,2));
         frame.add(volumei, new Rectangle (1,3,3,2));
         frame.add(volumes, new Rectangle (2,3,9,2));
-        
+        frame.add(howtoplay, new Rectangle(1,7,8,2));
         
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setUndecorated(true);
@@ -78,6 +84,13 @@ public class settings implements MouseListener{
             Point p=frame.getLocation();
             ng.setFrame();
             ng.frame.setLocation(p);
+            frame.dispose();
+        }
+        else if(e.getSource()==howtoplay) {
+            h2p srn = new h2p();
+            Point p=frame.getLocation();
+            srn.setFrame();
+            srn.frame.setLocation(p);
             frame.dispose();
         }
     }
