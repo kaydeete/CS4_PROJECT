@@ -68,11 +68,7 @@ public class settings implements MouseListener{
     
     public void addListeners() {
         quit.addMouseListener(this);
-    }
-    
-    public static void main(String[] args) {
-        settings screen = new settings();
-        screen.setFrame();
+        howtoplay.addMouseListener(this);
     }
     
 
