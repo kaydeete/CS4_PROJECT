@@ -11,6 +11,7 @@ public class maze1 implements MouseListener{
 
     JTextPane chatfield;
     JLabel chatbox;
+    int chatseq=0;
     ImageIcon chatimg;
 
     JLabel amper;
@@ -24,6 +25,8 @@ public class maze1 implements MouseListener{
     PlaySound click;
 
     public maze1() {
+        frame = new JFrame();
+        
         imgicon = new ImageIcon("Images/nxtbtn.png");
         img = new ImageIcon(imgicon.getImage().getScaledInstance(198, 90, Image.SCALE_DEFAULT));
         nxtbtn = new JLabel(img);
@@ -83,6 +86,27 @@ public class maze1 implements MouseListener{
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        if(e.getSource()==prevbtn) {
+            if(chatseq-1>=0){
+                chatseq--;
+                chatfield.setText(chat[chatseq]);
+            }
+            setElements();
+        }
+        else if(e.getSource()==nxtbtn) {
+            if(chatseq+1<chat.length) {
+                chatseq++;
+                chatfield.setText(chat[chatseq]);
+            }
+            else{
+                maze1 mm=new maze1();
+                Point p=frame.getLocation();
+                mm.setFrame();
+                mm.frame.setLocation(p);
+                frame.dispose();
+            }
+            setElements();
+        }
     }
 
     @Override
@@ -96,4 +120,8 @@ public class maze1 implements MouseListener{
 
     @Override
     public void mouseExited(MouseEvent e) {}
+
+    private void setElements() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
