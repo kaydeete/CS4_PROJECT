@@ -8,6 +8,7 @@ public class maze1 implements MouseListener{
     
     JLabel nxtbtn;
     JLabel prevbtn;
+    JLabel arrow;
 
     JTextPane chatfield;
     JLabel chatbox;
@@ -34,6 +35,10 @@ public class maze1 implements MouseListener{
         imgicon = new ImageIcon("Images/prevbtn.png");
         img = new ImageIcon(imgicon.getImage().getScaledInstance(198, 90, Image.SCALE_DEFAULT));
         prevbtn = new JLabel(img);
+        
+        imgicon = new ImageIcon("Images/arrow.png");
+        img = new ImageIcon(imgicon.getImage().getScaledInstance(198, 90, Image.SCALE_DEFAULT));
+        arrow = new JLabel(img);
         
         chatimg = new ImageIcon("Images/chatimg.png");
         chatbox = new JLabel(chatimg);
@@ -63,21 +68,12 @@ public class maze1 implements MouseListener{
         frame.setContentPane(backgroundPanel);
     }
     
-    public void styleChatField(String text) {
-        chatfield.setText(text);
-        chatfield.setFont(new Font("Segoe UI", Font.PLAIN, 30));
-        chatfield.setForeground(Color.WHITE);
-        chatfield.setEditable(false);
-        StyledDocument doc = chatfield.getStyledDocument();
-        SimpleAttributeSet center = new SimpleAttributeSet();
-        StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
-        doc.setParagraphAttributes(0, doc.getLength(), center, false);
-    }
-    
     public void setFrame() {
         frame.setLayout(new GraphPaperLayout(new Dimension(25, 10)));
         frame.add(prevbtn, new Rectangle(0, 9, 3, 1));
         frame.add(nxtbtn, new Rectangle(22, 9, 3, 1));
+        frame.add(arrow, new Rectangle(4, 7, 3, 2));
+        arrow.setVisible(false);
 
         frame.add(chatbox, new Rectangle(1, 9, 26, 10));
         frame.add(chatfield, new Rectangle(0, 9, 26, 2));
@@ -89,6 +85,22 @@ public class maze1 implements MouseListener{
         frame.setDefaultCloseOperation(frame.DISPOSE_ON_CLOSE);
         chatfield.setVisible(true);
     }
+    
+    public void styleChatField(String text) {
+        chatfield.setText(text);
+        chatfield.setFont(new Font("Segoe UI", Font.PLAIN, 30));
+        chatfield.setForeground(Color.WHITE);
+        chatfield.setEditable(false);
+        StyledDocument doc = chatfield.getStyledDocument();
+        SimpleAttributeSet center = new SimpleAttributeSet();
+        StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
+        doc.setParagraphAttributes(0, doc.getLength(), center, false);
+    }
+    
+    public static void main(String[] args) {
+        maze1 screen = new maze1();
+        screen.setFrame();
+    }
 
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -97,11 +109,12 @@ public class maze1 implements MouseListener{
                 chatseq--;
                 chatfield.setText(chat[chatseq]);
             }
-            setElements();
+
         } else if (e.getSource() == nxtbtn) {
             if (chatseq + 1 < chat.length) {
                 chatseq++;
                 chatfield.setText(chat[chatseq]);
+                arrow.setVisible(true);
             }        
         }
     }

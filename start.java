@@ -90,6 +90,7 @@ public class start implements MouseListener {
         frame.add(whirl, new Rectangle(16, 3, 3, 5));
 
         chatfield.setBackground(new Color(51, 44, 42));
+        whirl.setVisible(false);
 
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setUndecorated(true);
