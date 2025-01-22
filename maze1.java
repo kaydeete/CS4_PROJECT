@@ -3,17 +3,19 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.text.*;
 
-public class maze1 implements MouseListener{
+public class maze1 implements MouseListener, KeyListener{
     JFrame frame;
     
     JLabel nxtbtn;
     JLabel prevbtn;
-    JLabel arrow;
+    //JLabel arrow;
 
     JTextPane chatfield;
     JLabel chatbox;
     int chatseq=0;
     ImageIcon chatimg;
+    JLabel mapL;
+    int map[];
 
     JLabel amper;
 
@@ -24,9 +26,17 @@ public class maze1 implements MouseListener{
 
     MyStyle ms;
     PlaySound click;
+    PlaySound steps;
 
     public maze1() {
         frame = new JFrame();
+        steps = new PlaySound();
+        
+        map = new int[]{
+            1,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+            1,0,0,0,0,0,0,0
+            
+        };
         
         imgicon = new ImageIcon("Images/nxtbtn.png");
         img = new ImageIcon(imgicon.getImage().getScaledInstance(198, 90, Image.SCALE_DEFAULT));
@@ -36,9 +46,9 @@ public class maze1 implements MouseListener{
         img = new ImageIcon(imgicon.getImage().getScaledInstance(198, 90, Image.SCALE_DEFAULT));
         prevbtn = new JLabel(img);
         
-        imgicon = new ImageIcon("Images/arrow.png");
+        /*imgicon = new ImageIcon("Images/arrow.png");
         img = new ImageIcon(imgicon.getImage().getScaledInstance(198, 90, Image.SCALE_DEFAULT));
-        arrow = new JLabel(img);
+        arrow = new JLabel(img);*/
         
         chatimg = new ImageIcon("Images/chatimg.png");
         chatbox = new JLabel(chatimg);
@@ -54,7 +64,7 @@ public class maze1 implements MouseListener{
         prevbtn.addMouseListener(this);
         nxtbtn.addMouseListener(this);
         
-        JPanel backgroundPanel = new JPanel() {
+        /*JPanel backgroundPanel = new JPanel() {
             private final Image gameBG = new ImageIcon("Images/maze1scrap.png").getImage();
             @Override
             protected void paintComponent(Graphics g) {
@@ -65,15 +75,15 @@ public class maze1 implements MouseListener{
         };
         
         backgroundPanel.setLayout(new BorderLayout());
-        frame.setContentPane(backgroundPanel);
+        frame.setContentPane(backgroundPanel);*/
     }
     
     public void setFrame() {
         frame.setLayout(new GraphPaperLayout(new Dimension(25, 10)));
         frame.add(prevbtn, new Rectangle(0, 9, 3, 1));
         frame.add(nxtbtn, new Rectangle(22, 9, 3, 1));
-        frame.add(arrow, new Rectangle(4, 7, 3, 2));
-        arrow.setVisible(false);
+        //frame.add(arrow, new Rectangle(4, 7, 3, 2));
+        //arrow.setVisible(false);
 
         frame.add(chatbox, new Rectangle(1, 9, 26, 10));
         frame.add(chatfield, new Rectangle(0, 9, 26, 2));
@@ -96,11 +106,6 @@ public class maze1 implements MouseListener{
         StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
         doc.setParagraphAttributes(0, doc.getLength(), center, false);
     }
-    
-    public static void main(String[] args) {
-        maze1 screen = new maze1();
-        screen.setFrame();
-    }
 
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -114,7 +119,7 @@ public class maze1 implements MouseListener{
             if (chatseq + 1 < chat.length) {
                 chatseq++;
                 chatfield.setText(chat[chatseq]);
-                arrow.setVisible(true);
+                //arrow.setVisible(true);
             }        
         }
     }
@@ -132,6 +137,21 @@ public class maze1 implements MouseListener{
     public void mouseExited(MouseEvent e) {}
 
     private void setElements() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
