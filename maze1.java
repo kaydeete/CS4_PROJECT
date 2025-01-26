@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class maze1 implements MouseListener, KeyListener {
+public class maze1 implements KeyListener {
     JFrame frame;
     JLabel[] mapL;
     int[] map;
@@ -68,7 +68,6 @@ public class maze1 implements MouseListener, KeyListener {
             mapPanel.add(label);
         }
         frame.add(mapPanel, BorderLayout.CENTER);
-        
         System.out.println("Frame and map initialized successfully!");
         
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -106,11 +105,6 @@ public class maze1 implements MouseListener, KeyListener {
 
     @Override public void keyTyped(KeyEvent e) {}
     @Override public void keyReleased(KeyEvent e) {}
-    @Override public void mouseClicked(MouseEvent e) {}
-    @Override public void mousePressed(MouseEvent e) {}
-    @Override public void mouseReleased(MouseEvent e) {}
-    @Override public void mouseEntered(MouseEvent e) {}
-    @Override public void mouseExited(MouseEvent e) {}
 
     public static void main(String[] args) {
         maze1 maze = new maze1();

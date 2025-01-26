@@ -47,7 +47,10 @@ public class start implements MouseListener {
         chat = new String[]{
             "Amper heard an unusual sound in his room...",
             "The breadboard was quivering so he took a step closer.",
-            "Suddenly, the breadboard sucked him in!!"
+            "Suddenly, the breadboard sucked him in!!",
+            "Inside the breadboard is going to be a maze",
+            "Click on the objects seen for clues how to get out!",
+            "Goodluck!"
         };
 
         imgicon = new ImageIcon("Images/nxtbtn.png");
@@ -90,7 +93,6 @@ public class start implements MouseListener {
         frame.add(whirl, new Rectangle(16, 3, 3, 5));
 
         chatfield.setBackground(new Color(51, 44, 42));
-        whirl.setVisible(false);
 
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setUndecorated(true);
