@@ -100,6 +100,7 @@ public class start implements MouseListener {
         frame.setResizable(false);
         frame.setDefaultCloseOperation(frame.DISPOSE_ON_CLOSE);
         chatfield.setVisible(true);
+        whirl.setVisible(false);
 
         addListeners();
     }
