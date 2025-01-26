@@ -16,22 +16,22 @@ public class maze1 implements MouseListener, KeyListener {
 
         // Initialize map data
         map = new int[]{
-            1,0,0,0,1,1,1,1,1,1,1,1,
-            1,0,0,0,0,0,0,0,0,0,1,0,
-            1,0,0,0,0,0,0,0,0,0,1,0,
-            1,0,0,0,0,0,0,1,1,1,1,1,
-            1,0,0,0,0,0,0,0,0,0,1,0,
-            1,0,0,1,1,1,1,1,0,0,1,0,
-            1,0,0,1,0,0,0,0,0,0,1,0,
-            1,1,1,1,1,1,1,1,1,1,1,2
+            1,0,3,0,1,1,1,1,1,1,1,1,
+            1,0,0,0,0,0,0,0,0,0,1,1,
+            1,0,0,0,0,0,0,0,0,0,0,1,
+            1,0,0,0,0,0,0,1,1,1,0,1,
+            1,0,0,0,0,0,0,0,0,0,0,1,
+            1,0,0,1,1,1,1,1,0,0,0,1,
+            1,0,0,1,0,0,0,0,0,0,0,1,
+            1,1,1,1,1,1,1,1,1,1,2,1
         };
-        currentTile = 1;
+        currentTile = 2;
 
         // Load images
         try {
-            img1 = new ImageIcon(new ImageIcon("Images/brickwall.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
-            img2 = new ImageIcon(new ImageIcon("Images/door.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
-            amper = new ImageIcon(new ImageIcon("Images/amper.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
+            img1 = new ImageIcon(new ImageIcon("Images/brickwall.png").getImage().getScaledInstance(300, 100, Image.SCALE_DEFAULT));
+            img2 = new ImageIcon(new ImageIcon("Images/door.png").getImage().getScaledInstance(300, 100, Image.SCALE_DEFAULT));
+            amper = new ImageIcon(new ImageIcon("Images/amper.png").getImage().getScaledInstance(100, 60, Image.SCALE_DEFAULT));
         } catch (Exception e) {
             System.out.println("Image loading failed! Using default colors instead.");
         }
@@ -42,14 +42,17 @@ public class maze1 implements MouseListener, KeyListener {
             mapL[i] = new JLabel();
             mapL[i].setOpaque(true); // Allow background color to show
             if (map[i] == 1) {
-                mapL[i].setBackground(Color.BLACK); // Wall
+                //mapL[i].setBackground(Color.BLACK); // Wall
                 if (img1 != null) mapL[i].setIcon(img1);
             } else if (map[i] == 2) {
-                mapL[i].setBackground(Color.BLUE); // Door
+                //mapL[i].setBackground(Color.BLUE); // Door
                 if (img2 != null) mapL[i].setIcon(img2);
             } else if (map[i] == 3) {
-                mapL[i].setBackground(Color.GREEN); // Player
-                if (amper != null) mapL[i].setIcon(amper);
+                //mapL[i].setBackground(Color.GREEN); // Player
+                if (amper != null) {
+                    mapL[i].setIcon(amper);
+                    //mapL[i].setBackground(new Color(0, 0, 0, 0));
+                }
             } else {
                 mapL[i].setBackground(Color.WHITE); // Empty space
             }
@@ -65,7 +68,7 @@ public class maze1 implements MouseListener, KeyListener {
             mapPanel.add(label);
         }
         frame.add(mapPanel, BorderLayout.CENTER);
-
+        
         System.out.println("Frame and map initialized successfully!");
         
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -95,7 +98,7 @@ public class maze1 implements MouseListener, KeyListener {
             map[prevTile] = 0;
             map[currentTile] = 3;
             mapL[prevTile].setBackground(Color.WHITE);
-            mapL[currentTile].setBackground(Color.GREEN);
+            //mapL[currentTile].setBackground(Color.GREEN);
             mapL[prevTile].setIcon(null);
             mapL[currentTile].setIcon(amper);
         }
