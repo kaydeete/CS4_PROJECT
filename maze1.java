@@ -29,8 +29,8 @@ public class maze1 implements MouseListener, KeyListener {
 
         // Load images
         try {
-            img1 = new ImageIcon(new ImageIcon("Images/brickwall.png").getImage().getScaledInstance(300, 100, Image.SCALE_DEFAULT));
-            img2 = new ImageIcon(new ImageIcon("Images/door.png").getImage().getScaledInstance(300, 100, Image.SCALE_DEFAULT));
+            img1 = new ImageIcon(new ImageIcon("Images/brickwall.png").getImage().getScaledInstance(130, 130, Image.SCALE_DEFAULT));
+            img2 = new ImageIcon(new ImageIcon("Images/door.png").getImage().getScaledInstance(120, 100, Image.SCALE_DEFAULT));
             amper = new ImageIcon(new ImageIcon("Images/amper.png").getImage().getScaledInstance(100, 60, Image.SCALE_DEFAULT));
         } catch (Exception e) {
             System.out.println("Image loading failed! Using default colors instead.");
@@ -40,7 +40,7 @@ public class maze1 implements MouseListener, KeyListener {
         mapL = new JLabel[map.length];
         for (int i = 0; i < map.length; i++) {
             mapL[i] = new JLabel();
-            mapL[i].setOpaque(true); // Allow background color to show
+            //mapL[i].setOpaque(true); // Allow background color to show
             if (map[i] == 1) {
                 //mapL[i].setBackground(Color.BLACK); // Wall
                 if (img1 != null) mapL[i].setIcon(img1);
