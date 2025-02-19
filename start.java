@@ -49,7 +49,7 @@ public class start implements MouseListener {
             "The breadboard was quivering so he took a step closer.",
             "Suddenly, the breadboard sucked him in!!",
             "Inside the breadboard is going to be a maze",
-            //"Click on the objects seen for clues how to get out!",
+            "Click on the objects seen for clues how to get out!",
             "Goodluck!"
         };
 

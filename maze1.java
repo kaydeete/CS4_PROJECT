@@ -10,8 +10,10 @@ public class maze1 implements KeyListener, MouseListener {
     ImageIcon img2; // Door
     ImageIcon amper; // Player
     ImageIcon img;
-    ImageIcon hinticon;
-    JLabel hint;
+    ImageIcon hinticon1a;
+    ImageIcon hinticon1b;
+    JLabel hint1a;
+    JLabel hint1b;
     int currentTile;
 
     public maze1() {
@@ -21,7 +23,7 @@ public class maze1 implements KeyListener, MouseListener {
         map = new int[]{
             1,0,3,0,1,1,1,1,1,1,1,1,
             1,0,0,0,0,0,0,0,0,0,1,1,
-            1,0,0,0,0,0,0,0,0,0,0,1,
+            1,0,0,0,0,0,0,0,5,0,0,1,
             1,0,0,0,0,0,0,1,1,1,0,1,
             1,0,0,0,0,0,0,0,0,0,0,1,
             1,0,0,1,1,1,1,1,0,0,0,1,
@@ -34,8 +36,10 @@ public class maze1 implements KeyListener, MouseListener {
         img2 = new ImageIcon(new ImageIcon("Images/door.png").getImage().getScaledInstance(120, 100, Image.SCALE_DEFAULT));
         amper = new ImageIcon(new ImageIcon("Images/amper.png").getImage().getScaledInstance(100, 60, Image.SCALE_DEFAULT));
 
-        hinticon=new ImageIcon(new ImageIcon("Images/wire.png").getImage().getScaledInstance(130, 130, Image.SCALE_DEFAULT));
-        hint=new JLabel(img);
+        hinticon1a=new ImageIcon(new ImageIcon("Images/wire1a.png").getImage().getScaledInstance(130, 130, Image.SCALE_DEFAULT));
+        hint1a=new JLabel(img);
+        hinticon1b=new ImageIcon(new ImageIcon("Images/wire1b.png").getImage().getScaledInstance(130, 130, Image.SCALE_DEFAULT));
+        hint1b=new JLabel(img);
         
         // Initialize JLabel array
         mapL = new JLabel[map.length];
@@ -51,8 +55,13 @@ public class maze1 implements KeyListener, MouseListener {
                     mapL[i].setIcon(amper);
                 }
             } else if (map[i] == 4) {
-                if (hinticon != null) {
-                    mapL[i].setIcon(hinticon);
+                if (hinticon1a != null) {
+                    mapL[i].setIcon(hinticon1a);
+                    mapL[i].addMouseListener(this); // Add mouse listener to hint icon
+                }
+            } else if (map[i] == 5) {
+                if (hinticon1b != null) {
+                    mapL[i].setIcon(hinticon1b);
                     mapL[i].addMouseListener(this); // Add mouse listener to hint icon
                 }
             } else {
@@ -83,20 +92,17 @@ public class maze1 implements KeyListener, MouseListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
+        System.out.println("Current Tile: " + currentTile + " | Value: " + map[currentTile]);
         int keyCode = e.getKeyCode();
         int prevTile = currentTile;
 
-        if (keyCode == KeyEvent.VK_UP && currentTile >= 12 && map[currentTile - 12] == 0) {
-            currentTile -= 12;
-        } else if (keyCode == KeyEvent.VK_DOWN && currentTile < map.length - 12 && map[currentTile + 12] == 0) {
-            currentTile += 12;
-        } else if (keyCode == KeyEvent.VK_LEFT && currentTile % 12 > 0 && map[currentTile - 1] == 0) {
-            currentTile -= 1;
-        } else if (keyCode == KeyEvent.VK_RIGHT && currentTile % 12 < 11 && map[currentTile + 1] == 0) {
-            currentTile += 1;
-        }
-
+        if (keyCode == KeyEvent.VK_UP && currentTile >= 12 && (map[currentTile - 12] == 0 || map[currentTile - 12] == 2)) currentTile -= 12;
+        else if (keyCode == KeyEvent.VK_DOWN && currentTile < map.length - 12 && (map[currentTile + 12] == 0 || map[currentTile + 12] == 2)) currentTile += 12;
+        else if (keyCode == KeyEvent.VK_LEFT && currentTile % 12 > 0 && (map[currentTile - 1] == 0 || map[currentTile - 1] == 2)) currentTile -= 1;
+        else if (keyCode == KeyEvent.VK_RIGHT && currentTile % 12 < 11 && (map[currentTile + 1] == 0 || map[currentTile + 1] == 2)) currentTile += 1;
+        
         if (prevTile != currentTile) {
+            if (map[currentTile]==2) new Door1();
             map[prevTile] = 0;
             map[currentTile] = 3;
             mapL[prevTile].setBackground(Color.WHITE);
@@ -117,14 +123,9 @@ public class maze1 implements KeyListener, MouseListener {
     @Override
     public void mouseClicked(MouseEvent e) {
         for (int i = 0; i < mapL.length; i++) {
-        if (e.getSource() == mapL[i]) { // Check if the clicked label is one of the hint tiles
-            if (map[i] == 4) { // If it's a hint
-                // Create a new hint1 instance to display
-                hint1 ng = new hint1();
-                Point p = frame.getLocation();
-                ng.setFrame();
-                ng.frame.setLocation(p);
-                }
+            if (e.getSource() == mapL[i]) { // Check if the clicked label is one of the hint tiles
+                if (map[i] == 4) new hint1a();
+                else if (map[i] == 5) new hint1b();
             }
         }
     }
@@ -140,4 +141,67 @@ public class maze1 implements KeyListener, MouseListener {
 
     @Override
     public void mouseExited(MouseEvent e) {}
+}
+
+class Door1 {
+    JFrame frame;
+
+    public Door1() {
+        frame = new JFrame();
+        frame.setSize(900, 700);
+        frame.setLayout(new BorderLayout());
+
+        JLabel message = new JLabel("🎉 You've reached the door!", SwingConstants.CENTER);
+        message.setFont(new Font("Arial", Font.BOLD, 18));
+
+        JButton closeButton = new JButton("Close");
+        closeButton.addActionListener(e -> frame.dispose());
+
+        frame.add(message, BorderLayout.CENTER);
+        frame.add(closeButton, BorderLayout.SOUTH);
+
+        frame.setLocationRelativeTo(null); // Center the window
+        frame.setVisible(true);
+    }
+}
+
+class hint1a {
+    JFrame frame;
+    ImageIcon close;
+
+    public hint1a() {
+        frame = new JFrame();
+        frame.setSize(900, 600);
+        frame.setLayout(new BorderLayout());
+        JButton closeButton = new JButton("Close");
+        closeButton.setBackground(Color.BLACK);
+        closeButton.setFont(new Font("Arial", Font.BOLD, 20));
+        closeButton.addActionListener(e -> frame.dispose());
+        frame.add(closeButton, BorderLayout.SOUTH);
+
+        frame.setLocationRelativeTo(null); // Center the window
+        frame.setVisible(true);
+    }   
+}
+
+class hint1b {
+    JFrame frame;
+
+    public hint1b() {
+        frame = new JFrame();
+        frame.setSize(900, 600);
+        frame.setLayout(new BorderLayout());
+
+        /*JLabel message = new JLabel("🎉 You've reached the door!", SwingConstants.CENTER);
+        message.setFont(new Font("Arial", Font.BOLD, 18));*/
+
+        JButton closeButton = new JButton("Close");
+        closeButton.addActionListener(e -> frame.dispose());
+
+        //frame.add(message, BorderLayout.CENTER);
+        frame.add(closeButton, BorderLayout.SOUTH);
+
+        frame.setLocationRelativeTo(null); // Center the window
+        frame.setVisible(true);
+    }
 }
