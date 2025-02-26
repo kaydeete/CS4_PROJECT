@@ -143,25 +143,71 @@ public class maze1 implements KeyListener, MouseListener {
     public void mouseExited(MouseEvent e) {}
 }
 
-class Door1 {
+class Door1 implements MouseListener{
     JFrame frame;
+    JLabel ans1, ans2, ans3;
+    ImageIcon ans1icon, ans2icon, ans3icon, img;
 
     public Door1() {
         frame = new JFrame();
-        frame.setSize(900, 700);
-        frame.setLayout(new BorderLayout());
+        frame.setSize(1000, 700);
+        frame.setLayout(new GraphPaperLayout(new Dimension(20,20)));
+        
+        JPanel backgroundPanel = new JPanel() {
+            ImageIcon icon = new ImageIcon("Images/door1.png");
 
-        JLabel message = new JLabel("🎉 You've reached the door!", SwingConstants.CENTER);
-        message.setFont(new Font("Arial", Font.BOLD, 18));
-
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                // Draw and scale the image to fill the panel
+                g.drawImage(icon.getImage(), 0, 0, getWidth(), getHeight(), this);
+            }
+        };
+        frame.setContentPane(backgroundPanel); // Set it as the content pane
+        
+        ans1icon=new ImageIcon("Images/d1ans1.png");    //259x80 px
+        img=new ImageIcon(ans1icon.getImage().getScaledInstance(207, 64, Image.SCALE_DEFAULT));
+        ans1=new JLabel(img);
+        ans2icon=new ImageIcon("Images/d1ans2.png");    //259x80 px
+        img=new ImageIcon(ans2icon.getImage().getScaledInstance(207, 64, Image.SCALE_DEFAULT));
+        ans2=new JLabel(img);
+        ans3icon=new ImageIcon("Images/d1ans3.png");    //259x80 px
+        img=new ImageIcon(ans3icon.getImage().getScaledInstance(207, 64, Image.SCALE_DEFAULT));
+        ans3=new JLabel(img);
+        
+        frame.add(ans1, new Rectangle(5,8,5,2));
+        //frame.add(ans2, new Rectangle(550,300,207,64));
+        //frame.add(ans3, new Rectangle(350,400,207,64));
+        
         JButton closeButton = new JButton("Close");
         closeButton.addActionListener(e -> frame.dispose());
-
-        frame.add(message, BorderLayout.CENTER);
-        frame.add(closeButton, BorderLayout.SOUTH);
+        backgroundPanel.add(closeButton);
+        closeButton.setFont(new Font("Arial", Font.BOLD, 16)); // Change font, style, size
+        closeButton.setForeground(Color.YELLOW); // Text color
+        closeButton.setBackground(Color.WHITE); // Button background color
+        closeButton.setBorderPainted(false);
+        closeButton.setFocusPainted(false);
+        closeButton.setOpaque(true);
 
         frame.setLocationRelativeTo(null); // Center the window
         frame.setVisible(true);
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {}
+
+    @Override
+    public void mousePressed(MouseEvent e) {}
+
+    @Override
+    public void mouseReleased(MouseEvent e) {}
+
+    @Override
+    public void mouseEntered(MouseEvent e) {}
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
 
