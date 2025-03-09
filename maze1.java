@@ -15,9 +15,11 @@ public class maze1 implements KeyListener, MouseListener {
     JLabel hint1a;
     JLabel hint1b;
     int currentTile;
+    PlaySound click;
 
     public maze1() {
         frame = new JFrame();
+        click = new PlaySound();
 
         // Initialize map data
         map = new int[]{
@@ -92,6 +94,7 @@ public class maze1 implements KeyListener, MouseListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
+        click.playEffect("Audio/steps.wav");
         System.out.println("Current Tile: " + currentTile + " | Value: " + map[currentTile]);
         int keyCode = e.getKeyCode();
         int prevTile = currentTile;
