@@ -1,3 +1,5 @@
+package Quarter2;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -171,7 +173,7 @@ class hint1b {
     public hint1b() {
         frame = new JFrame();
         frame.setSize(900, 600);
-        frame.setLayout(new BorderLayout());
+        frame.setLayout(new BorderLayout());w
         JButton closeButton = new JButton("Close");
         closeButton.setBackground(Color.WHITE);
         closeButton.setFont(new Font("Segoe UI", Font.BOLD, 20));
