@@ -22,12 +22,14 @@ class Door1 implements MouseListener{
     JLabel ans1, ans2, ans3, doorL;
     ImageIcon ans1icon, ans2icon, ans3icon, img;
     ImageIcon icon = new ImageIcon("Images/door1.png");
+    PlaySound wrong;
 
     public Door1() {
         frame = new JFrame();
         frame.setLayout(new GraphPaperLayout(new Dimension(20,20)));
         doorL=new JLabel(icon);
         frame.setSize(1000,700);
+        wrong = new PlaySound();
         
         JPanel backgroundPanel = new JPanel() {
             @Override
@@ -83,6 +85,7 @@ class Door1 implements MouseListener{
             new correctans();
             frame.dispose();
         } else if (e.getSource() == ans2 || e.getSource() == ans3) {
+            wrong.playEffect("Audio/ticerror.wav");
             JOptionPane.showMessageDialog(frame, "Incorrect answer. Please try again.", "Wrong Answer", JOptionPane.ERROR_MESSAGE);
         }
     }

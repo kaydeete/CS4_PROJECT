@@ -125,9 +125,12 @@ public class maze2 implements KeyListener, MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        click.playEffect("Audio/ticclick.wav");
         for (int i = 0; i < mapL.length; i++) {
-            if (map[i] == 4) new hint2a();
-            else if (map[i] == 5) new hint2b();
+            if (e.getSource() == mapL[i]) { // Check if the clicked label is one of the hint tiles
+                if (map[i] == 4) new hint2a();
+                else if (map[i] == 5) new hint2b();
+            }
         }
     }
 
@@ -145,13 +148,72 @@ public class maze2 implements KeyListener, MouseListener {
 }
 
 class hint2a {
+    JFrame frame;
+    ImageIcon close;
+
     public hint2a() {
-        //asd
+        frame = new JFrame();
+        frame.setSize(900, 600);
+        frame.setLayout(new BorderLayout());
+
+        ImageIcon originalIcon = new ImageIcon("Images/d2hint1.png");
+        Image originalImage = originalIcon.getImage();
+        
+        // Scale image to fit within the frame size
+        int newWidth = frame.getWidth();
+        int newHeight = frame.getHeight() - 80; // Adjust for button space
+        Image scaledImage = originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+        
+        ImageIcon scaledIcon = new ImageIcon(scaledImage);
+        JLabel imageLabel = new JLabel(scaledIcon);
+        imageLabel.setHorizontalAlignment(JLabel.CENTER);
+
+        frame.add(imageLabel, BorderLayout.CENTER);
+
+        JButton closeButton = new JButton("Close");
+        closeButton.setBackground(Color.WHITE);
+        closeButton.setFont(new Font("Segoe UI", Font.BOLD, 20));
+        closeButton.addActionListener(e -> frame.dispose());
+
+        frame.add(closeButton, BorderLayout.SOUTH);
+
+        frame.setLocationRelativeTo(null); // Center the window
+        frame.setVisible(true);
     }
+        
 }
 
 class hint2b {
+    JFrame frame;
+    ImageIcon close;
+
     public hint2b() {
-        //asd
+        frame = new JFrame();
+        frame.setSize(900, 600);
+        frame.setLayout(new BorderLayout());
+        
+                ImageIcon originalIcon = new ImageIcon("Images/d2hint2.png");
+        Image originalImage = originalIcon.getImage();
+        
+        // Scale image to fit within the frame size
+        int newWidth = frame.getWidth();
+        int newHeight = frame.getHeight() - 80; // Adjust for button space
+        Image scaledImage = originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+        
+        ImageIcon scaledIcon = new ImageIcon(scaledImage);
+        JLabel imageLabel = new JLabel(scaledIcon);
+        imageLabel.setHorizontalAlignment(JLabel.CENTER);
+
+        frame.add(imageLabel, BorderLayout.CENTER);
+
+        JButton closeButton = new JButton("Close");
+        closeButton.setBackground(Color.WHITE);
+        closeButton.setFont(new Font("Segoe UI", Font.BOLD, 20));
+        closeButton.addActionListener(e -> frame.dispose());
+
+        frame.add(closeButton, BorderLayout.SOUTH);
+
+        frame.setLocationRelativeTo(null); // Center the window
+        frame.setVisible(true);
     }
 }

@@ -130,6 +130,7 @@ public class maze1 implements KeyListener, MouseListener {
     public void mouseClicked(MouseEvent e) {
         for (int i = 0; i < mapL.length; i++) {
             if (e.getSource() == mapL[i]) { // Check if the clicked label is one of the hint tiles
+                click.playEffect("Audio/ticclick.wav");
                 if (map[i] == 4) new hint1a();
                 else if (map[i] == 5) new hint1b();
             }

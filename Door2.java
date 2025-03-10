@@ -19,15 +19,17 @@ import java.awt.event.*;
 
 class Door2 implements MouseListener{
     JFrame frame;
-    JLabel ans1, ans2, ans3, doorL;
-    ImageIcon ans1icon, ans2icon, ans3icon, img;
-    ImageIcon icon = new ImageIcon("Images/door1.png");
+    JLabel ans1, ans2, ans3, ans4, doorL;
+    ImageIcon ans1icon, ans2icon, ans3icon, ans4icon, img;
+    ImageIcon icon = new ImageIcon("Images/d2q1.png");
+    PlaySound wrong;
 
     public Door2() {
         frame = new JFrame();
         frame.setLayout(new GraphPaperLayout(new Dimension(20,20)));
         doorL=new JLabel(icon);
         frame.setSize(1000,700);
+        wrong = new PlaySound();
         
         JPanel backgroundPanel = new JPanel() {
             @Override
@@ -38,27 +40,33 @@ class Door2 implements MouseListener{
         };
         frame.setContentPane(backgroundPanel);
         
-        ans1icon=new ImageIcon("Images/d1ans1.png");
-        img=new ImageIcon(ans1icon.getImage().getScaledInstance(259, 90, Image.SCALE_DEFAULT));
+        ans1icon=new ImageIcon("Images/d2q1a1.png");
+        img=new ImageIcon(ans1icon.getImage().getScaledInstance(259, 150, Image.SCALE_DEFAULT));
         ans1=new JLabel(img);
-        ans2icon=new ImageIcon("Images/d1ans2.png");
-        img=new ImageIcon(ans2icon.getImage().getScaledInstance(259, 90, Image.SCALE_DEFAULT));
+        ans2icon=new ImageIcon("Images/d2q1a2.png");
+        img=new ImageIcon(ans2icon.getImage().getScaledInstance(259, 150, Image.SCALE_DEFAULT));
         ans2=new JLabel(img);
-        ans3icon=new ImageIcon("Images/d1ans3.png");
-        img=new ImageIcon(ans3icon.getImage().getScaledInstance(259, 90, Image.SCALE_DEFAULT));
+        ans3icon=new ImageIcon("Images/d2q1a3.png");
+        img=new ImageIcon(ans3icon.getImage().getScaledInstance(259, 150, Image.SCALE_DEFAULT));
         ans3=new JLabel(img);
+        ans4icon=new ImageIcon("Images/d2q1a4.png");
+        img=new ImageIcon(ans4icon.getImage().getScaledInstance(259, 150, Image.SCALE_DEFAULT));
+        ans4=new JLabel(img);
         
         backgroundPanel.setLayout(null);
-        ans1.setBounds(370, 300, 259, 90);
-        ans2.setBounds(370, 400, 259, 90);
-        ans3.setBounds(370, 500, 259, 90);
+        ans1.setBounds(370, 150, 259, 150);
+        ans2.setBounds(370, 250, 259, 150);
+        ans3.setBounds(370, 350, 259, 150);
+        ans4.setBounds(370, 450, 259, 150);
         backgroundPanel.add(ans1);
         backgroundPanel.add(ans2);
         backgroundPanel.add(ans3);
+        backgroundPanel.add(ans4);
         
         ans1.addMouseListener(this);
         ans2.addMouseListener(this);
         ans3.addMouseListener(this);
+        ans4.addMouseListener(this);
         
         JButton closeButton = new JButton("Close");
         closeButton.addActionListener(e -> frame.dispose());
@@ -79,10 +87,11 @@ class Door2 implements MouseListener{
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (e.getSource()==ans1) {
+        if (e.getSource()==ans4) {
             new q2();
             frame.dispose();
-        } else if (e.getSource() == ans2 || e.getSource() == ans3) {
+        } else if (e.getSource() == ans2 || e.getSource() == ans3 || e.getSource() == ans1) {
+            wrong.playEffect("Audio/ticerror.wav");
             JOptionPane.showMessageDialog(frame, "Incorrect answer. Please try again.", "Wrong Answer", JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -100,16 +109,19 @@ class Door2 implements MouseListener{
     public void mouseExited(MouseEvent e) {}
 }
 
-
 class q2 implements MouseListener{
     JFrame frame;
     ImageIcon backgroundImage;
+    JLabel ans1, ans2, ans3, ans4;
+    ImageIcon ans1icon, ans2icon, ans3icon, ans4icon, img;
+    PlaySound wrong;
 
     public q2() {
         frame = new JFrame();
-        frame.setSize(900, 600);
+        frame.setSize(1000, 700);
         frame.setLayout(new BorderLayout());
-        backgroundImage = new ImageIcon("Images/d1correct.png");
+        backgroundImage = new ImageIcon("Images/d2q2.png");
+        wrong = new PlaySound();
         
         JPanel backgroundPanel = new JPanel() {
             @Override
@@ -120,11 +132,49 @@ class q2 implements MouseListener{
             }
         };
         backgroundPanel.setLayout(new BorderLayout());
+        
+        ans1icon=new ImageIcon("Images/d2q2a1.png");
+        img=new ImageIcon(ans1icon.getImage().getScaledInstance(259, 100, Image.SCALE_DEFAULT));
+        ans1=new JLabel(img);
+        ans2icon=new ImageIcon("Images/d2q2a2.png");
+        img=new ImageIcon(ans2icon.getImage().getScaledInstance(259, 100, Image.SCALE_DEFAULT));
+        ans2=new JLabel(img);
+        ans3icon=new ImageIcon("Images/d2q2a3.png");
+        img=new ImageIcon(ans3icon.getImage().getScaledInstance(259, 100, Image.SCALE_DEFAULT));
+        ans3=new JLabel(img);
+        ans4icon=new ImageIcon("Images/d2q2a4.png");
+        img=new ImageIcon(ans4icon.getImage().getScaledInstance(259, 100, Image.SCALE_DEFAULT));
+        ans4=new JLabel(img);
+        
+        backgroundPanel.setLayout(null);
+        ans1.setBounds(370, 200, 259, 100);
+        ans2.setBounds(370, 300, 259, 100);
+        ans3.setBounds(370, 400, 259, 100);
+        ans4.setBounds(370, 500, 259, 100);
+        backgroundPanel.add(ans1);
+        backgroundPanel.add(ans2);
+        backgroundPanel.add(ans3);
+        backgroundPanel.add(ans4);
+        
+        ans1.addMouseListener(this);
+        ans2.addMouseListener(this);
+        ans3.addMouseListener(this);
+        ans4.addMouseListener(this);
+        
+        frame.setContentPane(backgroundPanel);
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
     }   
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        //
+        if (e.getSource()==ans3) {
+            new correctans();
+            frame.dispose();
+        } else if (e.getSource() == ans1 || e.getSource() == ans2 || e.getSource() == ans4) {
+            wrong.playEffect("Audio/ticerror.wav");
+            JOptionPane.showMessageDialog(frame, "Incorrect answer. Please try again.", "Wrong Answer", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     @Override
