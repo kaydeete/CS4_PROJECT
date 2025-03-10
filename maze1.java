@@ -157,15 +157,32 @@ class hint1a {
         frame = new JFrame();
         frame.setSize(900, 600);
         frame.setLayout(new BorderLayout());
+
+        ImageIcon originalIcon = new ImageIcon("Images/hint1.png");
+        Image originalImage = originalIcon.getImage();
+        
+        // Scale image to fit within the frame size
+        int newWidth = frame.getWidth();
+        int newHeight = frame.getHeight() - 80; // Adjust for button space
+        Image scaledImage = originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+        
+        ImageIcon scaledIcon = new ImageIcon(scaledImage);
+        JLabel imageLabel = new JLabel(scaledIcon);
+        imageLabel.setHorizontalAlignment(JLabel.CENTER);
+
+        frame.add(imageLabel, BorderLayout.CENTER);
+
         JButton closeButton = new JButton("Close");
         closeButton.setBackground(Color.WHITE);
         closeButton.setFont(new Font("Segoe UI", Font.BOLD, 20));
         closeButton.addActionListener(e -> frame.dispose());
+
         frame.add(closeButton, BorderLayout.SOUTH);
 
         frame.setLocationRelativeTo(null); // Center the window
         frame.setVisible(true);
-    }   
+    }
+        
 }
 
 class hint1b {
@@ -176,10 +193,26 @@ class hint1b {
         frame = new JFrame();
         frame.setSize(900, 600);
         frame.setLayout(new BorderLayout());
+        
+                ImageIcon originalIcon = new ImageIcon("Images/hint2.png");
+        Image originalImage = originalIcon.getImage();
+        
+        // Scale image to fit within the frame size
+        int newWidth = frame.getWidth();
+        int newHeight = frame.getHeight() - 80; // Adjust for button space
+        Image scaledImage = originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+        
+        ImageIcon scaledIcon = new ImageIcon(scaledImage);
+        JLabel imageLabel = new JLabel(scaledIcon);
+        imageLabel.setHorizontalAlignment(JLabel.CENTER);
+
+        frame.add(imageLabel, BorderLayout.CENTER);
+
         JButton closeButton = new JButton("Close");
         closeButton.setBackground(Color.WHITE);
         closeButton.setFont(new Font("Segoe UI", Font.BOLD, 20));
         closeButton.addActionListener(e -> frame.dispose());
+
         frame.add(closeButton, BorderLayout.SOUTH);
 
         frame.setLocationRelativeTo(null); // Center the window
