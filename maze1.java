@@ -1,5 +1,3 @@
-package Quarter2;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -107,7 +105,10 @@ public class maze1 implements KeyListener, MouseListener {
         else if (keyCode == KeyEvent.VK_RIGHT && currentTile % 12 < 11 && (map[currentTile + 1] == 0 || map[currentTile + 1] == 2)) currentTile += 1;
         
         if (prevTile != currentTile) {
-            if (map[currentTile]==2) new Door1();
+            if (map[currentTile]==2) {
+                frame.dispose();
+                new Door1();
+            }
             map[prevTile] = 0;
             map[currentTile] = 3;
             mapL[prevTile].setBackground(Color.WHITE);

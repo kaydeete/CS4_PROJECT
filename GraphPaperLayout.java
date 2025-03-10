@@ -1,5 +1,3 @@
-package Quarter2;
-
 import java.awt.*;
 import java.util.Hashtable;
 

@@ -1,5 +1,3 @@
-package Quarter2;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -12,8 +10,10 @@ public class maze2 implements KeyListener, MouseListener {
     ImageIcon img2; // Door
     ImageIcon amper; // Player
     ImageIcon img;
-    ImageIcon hinticon2;
-    JLabel hint2;
+    ImageIcon hinticon2a;
+    JLabel hint2a;
+    ImageIcon hinticon2b;
+    JLabel hint2b;
     int currentTile;
     PlaySound click;
 
@@ -27,7 +27,7 @@ public class maze2 implements KeyListener, MouseListener {
             1,0,0,0,0,0,0,0,0,1,0,2,
             1,0,1,1,1,1,1,1,0,1,0,1,
             3,0,1,1,1,0,0,0,0,1,0,1,
-            1,0,1,0,1,4,0,1,0,1,0,1,
+            1,0,1,5,1,4,0,1,0,1,0,1,
             1,0,1,0,1,1,1,1,0,1,0,1,
             1,0,0,0,1,0,0,0,0,0,0,1,
             1,1,1,1,1,1,1,1,1,1,1,1
@@ -38,8 +38,10 @@ public class maze2 implements KeyListener, MouseListener {
         img2 = new ImageIcon(new ImageIcon("Images/door.png").getImage().getScaledInstance(120, 100, Image.SCALE_DEFAULT));
         amper = new ImageIcon(new ImageIcon("Images/amper.png").getImage().getScaledInstance(100, 60, Image.SCALE_DEFAULT));
 
-        hinticon2=new ImageIcon(new ImageIcon("Images/wire1a.png").getImage().getScaledInstance(130, 130, Image.SCALE_DEFAULT));
-        hint2=new JLabel(img);
+        hinticon2a=new ImageIcon(new ImageIcon("Images/wire1a.png").getImage().getScaledInstance(130, 130, Image.SCALE_DEFAULT));
+        hint2a=new JLabel(img);
+        hinticon2b=new ImageIcon(new ImageIcon("Images/wire1b.png").getImage().getScaledInstance(130, 130, Image.SCALE_DEFAULT));
+        hint2b=new JLabel(img);
         
         // Initialize JLabel array
         mapL = new JLabel[map.length];
@@ -55,8 +57,13 @@ public class maze2 implements KeyListener, MouseListener {
                     mapL[i].setIcon(amper);
                 }
             } else if (map[i] == 4) {
-                if (hinticon2 != null) {
-                    mapL[i].setIcon(hinticon2);
+                if (hinticon2a != null) {
+                    mapL[i].setIcon(hinticon2a);
+                    mapL[i].addMouseListener(this); // Add mouse listener to hint icon
+                }
+            } else if (map[i] == 5) {
+                if (hinticon2b != null) {
+                    mapL[i].setIcon(hinticon2b);
                     mapL[i].addMouseListener(this); // Add mouse listener to hint icon
                 }
             } else {
@@ -119,9 +126,8 @@ public class maze2 implements KeyListener, MouseListener {
     @Override
     public void mouseClicked(MouseEvent e) {
         for (int i = 0; i < mapL.length; i++) {
-            if (e.getSource() == mapL[i]) { // Check if the clicked label is one of the hint tiles
-                new hint2();
-            }
+            if (map[i] == 4) new hint2a();
+            else if (map[i] == 5) new hint2b();
         }
     }
 
@@ -138,8 +144,14 @@ public class maze2 implements KeyListener, MouseListener {
     public void mouseExited(MouseEvent e) {}
 }
 
-class hint2 {
-    public hint2() {
+class hint2a {
+    public hint2a() {
+        //asd
+    }
+}
+
+class hint2b {
+    public hint2b() {
         //asd
     }
 }

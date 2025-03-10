@@ -1,5 +1,3 @@
-package Quarter2;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -32,16 +30,13 @@ class Door2 implements MouseListener{
         frame.setSize(1000,700);
         
         JPanel backgroundPanel = new JPanel() {
-            //ImageIcon icon = new ImageIcon("Images/door1.png");
-
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                // Draw and scale the image to fill the panel
                 g.drawImage(icon.getImage(), 0, 0, getWidth(), getHeight(), this);
             }
         };
-        frame.setContentPane(backgroundPanel); // Set it as the content pane
+        frame.setContentPane(backgroundPanel);
         
         ans1icon=new ImageIcon("Images/d1ans1.png");
         img=new ImageIcon(ans1icon.getImage().getScaledInstance(259, 90, Image.SCALE_DEFAULT));
@@ -53,7 +48,6 @@ class Door2 implements MouseListener{
         img=new ImageIcon(ans3icon.getImage().getScaledInstance(259, 90, Image.SCALE_DEFAULT));
         ans3=new JLabel(img);
         
-        // Add answers to the panel
         backgroundPanel.setLayout(null);
         ans1.setBounds(370, 300, 259, 90);
         ans2.setBounds(370, 400, 259, 90);
@@ -62,40 +56,75 @@ class Door2 implements MouseListener{
         backgroundPanel.add(ans2);
         backgroundPanel.add(ans3);
         
-        
         ans1.addMouseListener(this);
         ans2.addMouseListener(this);
         ans3.addMouseListener(this);
-        /*frame.add(ans1, new Rectangle(5,8,5,2));
-        frame.add(ans2, new Rectangle(5,10,5,2));
-        frame.add(ans3, new Rectangle(5,12,5,2));
-        frame.add(doorL, new Rectangle(0,0,20,20));*/
         
         JButton closeButton = new JButton("Close");
         closeButton.addActionListener(e -> frame.dispose());
         backgroundPanel.add(closeButton);
-        closeButton.setFont(new Font("Segoe UI", Font.BOLD, 16)); // Change font, style, size
-        closeButton.setForeground(Color.YELLOW); // Text color
-        closeButton.setBackground(Color.WHITE); // Button background color
+        closeButton.setFont(new Font("Segoe UI", Font.BOLD, 16));
+        closeButton.setForeground(Color.YELLOW);
+        closeButton.setBackground(Color.WHITE);
         closeButton.setBorderPainted(false);
         closeButton.setFocusPainted(false);
         closeButton.setOpaque(true);
 
-        frame.setLocationRelativeTo(null); // Center the window
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         frame.setSize(1000, 700);
-        
-        // Center the window without making it fullscreen
-        frame.setLocationRelativeTo(null); // Center the window
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
         if (e.getSource()==ans1) {
-            new correctans();
+            new q2();
             frame.dispose();
+        } else if (e.getSource() == ans2 || e.getSource() == ans3) {
+            JOptionPane.showMessageDialog(frame, "Incorrect answer. Please try again.", "Wrong Answer", JOptionPane.ERROR_MESSAGE);
         }
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {}
+
+    @Override
+    public void mouseReleased(MouseEvent e) {}
+
+    @Override
+    public void mouseEntered(MouseEvent e) {}
+
+    @Override
+    public void mouseExited(MouseEvent e) {}
+}
+
+
+class q2 implements MouseListener{
+    JFrame frame;
+    ImageIcon backgroundImage;
+
+    public q2() {
+        frame = new JFrame();
+        frame.setSize(900, 600);
+        frame.setLayout(new BorderLayout());
+        backgroundImage = new ImageIcon("Images/d1correct.png");
+        
+        JPanel backgroundPanel = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                Image image = backgroundImage.getImage();
+                g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
+            }
+        };
+        backgroundPanel.setLayout(new BorderLayout());
+    }   
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        //
     }
 
     @Override
@@ -120,9 +149,8 @@ class correctans {
         frame = new JFrame();
         frame.setSize(900, 600);
         frame.setLayout(new BorderLayout());
-        backgroundImage = new ImageIcon("Images/d1correct.png");
+        backgroundImage = new ImageIcon("Images/d2correct.png");
         
-        // Create a panel with the background image
         JPanel backgroundPanel = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
@@ -138,12 +166,11 @@ class correctans {
         nextButton.setFont(new Font("Segoe UI", Font.BOLD, 20));
         nextButton.addActionListener(e -> {
             frame.dispose();
-            new maze2();
-                });
+        });
 
         backgroundPanel.add(nextButton, BorderLayout.SOUTH);
         frame.setContentPane(backgroundPanel);
-        frame.setLocationRelativeTo(null); // Center the window
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }   
 }
