@@ -38,9 +38,9 @@ public class maze2 implements KeyListener, MouseListener {
         img2 = new ImageIcon(new ImageIcon("Images/door.png").getImage().getScaledInstance(120, 100, Image.SCALE_DEFAULT));
         amper = new ImageIcon(new ImageIcon("Images/amper.png").getImage().getScaledInstance(100, 60, Image.SCALE_DEFAULT));
 
-        hinticon2a=new ImageIcon(new ImageIcon("Images/wire1a.png").getImage().getScaledInstance(130, 130, Image.SCALE_DEFAULT));
+        hinticon2a=new ImageIcon(new ImageIcon("Images/wirea.png").getImage().getScaledInstance(130, 130, Image.SCALE_DEFAULT));
         hint2a=new JLabel(img);
-        hinticon2b=new ImageIcon(new ImageIcon("Images/wire1b.png").getImage().getScaledInstance(130, 130, Image.SCALE_DEFAULT));
+        hinticon2b=new ImageIcon(new ImageIcon("Images/wireb.png").getImage().getScaledInstance(130, 130, Image.SCALE_DEFAULT));
         hint2b=new JLabel(img);
         
         // Initialize JLabel array
@@ -105,7 +105,10 @@ public class maze2 implements KeyListener, MouseListener {
         else if (keyCode == KeyEvent.VK_RIGHT && currentTile % 12 < 11 && (map[currentTile + 1] == 0 || map[currentTile + 1] == 2)) currentTile += 1;
         
         if (prevTile != currentTile) {
-            if (map[currentTile]==2) new Door2();
+            if (map[currentTile]==2) {
+                frame.dispose();
+                new Door2();
+            }
             map[prevTile] = 0;
             map[currentTile] = 36;
             mapL[prevTile].setBackground(Color.WHITE);

@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class maze1 implements KeyListener, MouseListener {
+public class maze3 implements KeyListener, MouseListener {
     JFrame frame;
     JLabel[] mapL;
     int[] map;
@@ -10,38 +10,38 @@ public class maze1 implements KeyListener, MouseListener {
     ImageIcon img2; // Door
     ImageIcon amper; // Player
     ImageIcon img;
-    ImageIcon hinticon1a;
-    ImageIcon hinticon1b;
-    JLabel hint1a;
-    JLabel hint1b;
+    ImageIcon hinticon2a;
+    JLabel hint2a;
+    ImageIcon hinticon2b;
+    JLabel hint2b;
     int currentTile;
     PlaySound click;
 
-    public maze1() {
+    public maze3() {
         frame = new JFrame();
         click = new PlaySound();
 
         // Initialize map data
         map = new int[]{
-            1,0,3,0,1,1,1,1,1,1,1,1,
-            1,0,0,0,0,0,0,0,0,0,1,1,
-            1,0,0,0,0,0,0,0,5,0,0,1,
-            1,0,0,0,0,0,0,1,1,1,0,1,
-            1,0,0,0,0,0,0,0,0,0,0,1,
-            1,0,0,1,1,1,1,1,0,0,0,1,
-            1,0,4,1,0,0,0,0,0,0,0,1,
-            1,1,1,1,1,1,1,1,1,1,2,1
+            1,1,1,1,1,1,1,1,1,1,1,1,
+            3,0,0,0,0,0,0,0,0,1,0,1,
+            1,0,1,1,0,1,1,1,0,1,0,1,
+            1,0,1,0,0,0,0,0,0,0,0,1,
+            1,0,1,0,5,1,1,1,1,1,0,1,
+            1,0,1,0,1,1,1,1,0,1,0,1,
+            1,4,1,0,1,0,0,0,0,0,0,2,
+            1,1,1,1,1,1,1,1,1,1,1,1
         };
-        currentTile = 2;
+        currentTile = 36;
 
         img1 = new ImageIcon(new ImageIcon("Images/brickwall.png").getImage().getScaledInstance(130, 130, Image.SCALE_DEFAULT));
         img2 = new ImageIcon(new ImageIcon("Images/door.png").getImage().getScaledInstance(120, 100, Image.SCALE_DEFAULT));
         amper = new ImageIcon(new ImageIcon("Images/amper.png").getImage().getScaledInstance(100, 60, Image.SCALE_DEFAULT));
 
-        hinticon1a=new ImageIcon(new ImageIcon("Images/wirea.png").getImage().getScaledInstance(130, 130, Image.SCALE_DEFAULT));
-        hint1a=new JLabel(img);
-        hinticon1b=new ImageIcon(new ImageIcon("Images/wireb.png").getImage().getScaledInstance(130, 130, Image.SCALE_DEFAULT));
-        hint1b=new JLabel(img);
+        hinticon2a=new ImageIcon(new ImageIcon("Images/wirea.png").getImage().getScaledInstance(130, 130, Image.SCALE_DEFAULT));
+        hint2a=new JLabel(img);
+        hinticon2b=new ImageIcon(new ImageIcon("Images/wireb.png").getImage().getScaledInstance(130, 130, Image.SCALE_DEFAULT));
+        hint2b=new JLabel(img);
         
         // Initialize JLabel array
         mapL = new JLabel[map.length];
@@ -57,13 +57,13 @@ public class maze1 implements KeyListener, MouseListener {
                     mapL[i].setIcon(amper);
                 }
             } else if (map[i] == 4) {
-                if (hinticon1a != null) {
-                    mapL[i].setIcon(hinticon1a);
+                if (hinticon2a != null) {
+                    mapL[i].setIcon(hinticon2a);
                     mapL[i].addMouseListener(this); // Add mouse listener to hint icon
                 }
             } else if (map[i] == 5) {
-                if (hinticon1b != null) {
-                    mapL[i].setIcon(hinticon1b);
+                if (hinticon2b != null) {
+                    mapL[i].setIcon(hinticon2b);
                     mapL[i].addMouseListener(this); // Add mouse listener to hint icon
                 }
             } else {
@@ -107,10 +107,10 @@ public class maze1 implements KeyListener, MouseListener {
         if (prevTile != currentTile) {
             if (map[currentTile]==2) {
                 frame.dispose();
-                new Door1();
+                //new Door3();
             }
             map[prevTile] = 0;
-            map[currentTile] = 3;
+            map[currentTile] = 36;
             mapL[prevTile].setBackground(Color.WHITE);
             //mapL[currentTile].setBackground(Color.GREEN);
             mapL[prevTile].setIcon(null);
@@ -122,17 +122,17 @@ public class maze1 implements KeyListener, MouseListener {
     @Override public void keyReleased(KeyEvent e) {}
 
     public static void main(String[] args) {
-        maze1 maze = new maze1();
+        maze2 maze = new maze2();
         maze.setFrame();
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        click.playEffect("Audio/ticclick.wav");
         for (int i = 0; i < mapL.length; i++) {
             if (e.getSource() == mapL[i]) { // Check if the clicked label is one of the hint tiles
-                click.playEffect("Audio/ticclick.wav");
-                if (map[i] == 4) new hint1a();
-                else if (map[i] == 5) new hint1b();
+                if (map[i] == 4) new hint2a();
+                else if (map[i] == 5) new hint2b();
             }
         }
     }
@@ -150,16 +150,16 @@ public class maze1 implements KeyListener, MouseListener {
     public void mouseExited(MouseEvent e) {}
 }
 
-class hint1a {
+class hint2a {
     JFrame frame;
     ImageIcon close;
 
-    public hint1a() {
+    public hint2a() {
         frame = new JFrame();
         frame.setSize(900, 600);
         frame.setLayout(new BorderLayout());
 
-        ImageIcon originalIcon = new ImageIcon("Images/hint1.png");
+        ImageIcon originalIcon = new ImageIcon("Images/d2hint1.png");
         Image originalImage = originalIcon.getImage();
         
         // Scale image to fit within the frame size
@@ -186,16 +186,16 @@ class hint1a {
         
 }
 
-class hint1b {
+class hint2b {
     JFrame frame;
     ImageIcon close;
 
-    public hint1b() {
+    public hint2b() {
         frame = new JFrame();
         frame.setSize(900, 600);
         frame.setLayout(new BorderLayout());
         
-                ImageIcon originalIcon = new ImageIcon("Images/hint2.png");
+                ImageIcon originalIcon = new ImageIcon("Images/d2hint2.png");
         Image originalImage = originalIcon.getImage();
         
         // Scale image to fit within the frame size
