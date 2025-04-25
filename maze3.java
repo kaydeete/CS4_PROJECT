@@ -1,3 +1,5 @@
+package Quarter2;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -32,7 +34,7 @@ public class maze3 implements KeyListener, MouseListener {
             1,4,1,0,1,0,0,0,0,0,0,2,
             1,1,1,1,1,1,1,1,1,1,1,1
         };
-        currentTile = 36;
+        currentTile = 12;
 
         img1 = new ImageIcon(new ImageIcon("Images/brickwall.png").getImage().getScaledInstance(130, 130, Image.SCALE_DEFAULT));
         img2 = new ImageIcon(new ImageIcon("Images/door.png").getImage().getScaledInstance(120, 100, Image.SCALE_DEFAULT));

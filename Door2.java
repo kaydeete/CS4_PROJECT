@@ -1,3 +1,5 @@
+package Quarter2;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -215,7 +217,7 @@ class correctans {
         nextButton.setBackground(Color.WHITE);
         nextButton.setFont(new Font("Segoe UI", Font.BOLD, 20));
         nextButton.addActionListener(e -> {
-            maze3 maze = new maze2();
+            maze3 maze = new maze3();
             maze.setFrame();
             frame.dispose();
         });
