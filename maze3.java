@@ -109,7 +109,7 @@ public class maze3 implements KeyListener, MouseListener {
         if (prevTile != currentTile) {
             if (map[currentTile]==2) {
                 frame.dispose();
-                //new Door3();
+                new Door3();
             }
             map[prevTile] = 0;
             map[currentTile] = 36;
@@ -124,7 +124,7 @@ public class maze3 implements KeyListener, MouseListener {
     @Override public void keyReleased(KeyEvent e) {}
 
     public static void main(String[] args) {
-        maze2 maze = new maze2();
+        maze3 maze = new maze3();
         maze.setFrame();
     }
 
