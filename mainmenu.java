@@ -8,7 +8,7 @@ public class mainmenu implements MouseListener{
 
     JFrame frame;
     JLabel start;
-    JLabel settings; 
+    JLabel settingsl; 
     JLabel quit;
     //ImageIcon gameBG;
     ImageIcon starticon;
@@ -29,7 +29,7 @@ public class mainmenu implements MouseListener{
         
         settingsicon=new ImageIcon("Images/settings.png");    //259x80 px
         img=new ImageIcon(settingsicon.getImage().getScaledInstance(300, 200, Image.SCALE_DEFAULT));
-        settings=new JLabel(img);
+        settingsl=new JLabel(img);
 
         quiticon=new ImageIcon("Images/quit.png");    //259x80 px
         img=new ImageIcon(quiticon.getImage().getScaledInstance(300, 200, Image.SCALE_DEFAULT));
@@ -56,7 +56,7 @@ public class mainmenu implements MouseListener{
         bgm.playEffect("Audio/bgm.wav");
         
         frame.add(start, new Rectangle (1,1,8,2));
-        frame.add(settings, new Rectangle (1,4,8,2));
+        frame.add(settingsl, new Rectangle (1,4,8,2));
         frame.add(quit, new Rectangle (1,7,8,2));
         
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -70,7 +70,7 @@ public class mainmenu implements MouseListener{
     
     public void addListeners() {
         start.addMouseListener(this);
-        settings.addMouseListener(this);
+        settingsl.addMouseListener(this);
         quit.addMouseListener(this);
     }
     
@@ -90,7 +90,7 @@ public class mainmenu implements MouseListener{
             ng.frame.setLocation(p);
             frame.dispose();
         }
-        else if(e.getSource()==settings){
+        else if(e.getSource()==settingsl){
             settings ng=new settings();
             Point p=frame.getLocation();
             ng.setFrame();
