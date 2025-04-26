@@ -235,6 +235,8 @@ public class Door3 extends JFrame {
                 maze3 maze = new maze3();
                 maze.setFrame();
                 frame.dispose();
+                
+                /*Change this nlng to the next part of the game*/
             });
 
             backgroundPanel.add(nextButton, BorderLayout.SOUTH);
