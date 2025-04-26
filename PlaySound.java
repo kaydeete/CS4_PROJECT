@@ -76,13 +76,20 @@ public class PlaySound implements ActionListener{
             clip = (Clip) AudioSystem.getLine(info);
             clip.open(stream);
             clip.start();
-
+            //clip.loop(Clip.LOOP_CONTINUOUSLY); // for bgm looping
             
 
             //clip.stop();
 
         }catch(Exception err){
             System.out.println(err.toString());
+        }
+    }
+
+    public void stop() {
+        if (clip != null && clip.isRunning()) {
+            clip.stop();
+            clip.close();
         }
     }
 }

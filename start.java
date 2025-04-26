@@ -31,6 +31,7 @@ public class start implements MouseListener {
 
     public start() {
         frame = new JFrame();
+        click = new PlaySound();
 
         JPanel backgroundPanel = new JPanel() {
             private final Image gameBG = new ImageIcon("Images/cutscene1.png").getImage();
@@ -148,7 +149,7 @@ public class start implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        //click.playEffect("Audio/click.wav");
+        click.playEffect("Audio/click.wav");
         if (e.getSource() == prevbtn) {
             if (chatseq - 1 >= 0) {
                 chatseq--;

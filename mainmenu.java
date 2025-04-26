@@ -16,10 +16,12 @@ public class mainmenu implements MouseListener{
     ImageIcon quiticon;
     ImageIcon img;
     PlaySound click;
+    PlaySound bgm;
     
     public mainmenu() {
         frame = new JFrame();
         click = new PlaySound();
+        bgm = new PlaySound();
         
         starticon=new ImageIcon("Images/start.png");    //259x80 px
         img=new ImageIcon(starticon.getImage().getScaledInstance(300, 200, Image.SCALE_DEFAULT));
@@ -51,6 +53,7 @@ public class mainmenu implements MouseListener{
     
     public void setFrame() {
         frame.setLayout(new GraphPaperLayout(new Dimension (10,10)));
+        bgm.playEffect("Audio/bgm.wav");
         
         frame.add(start, new Rectangle (1,1,8,2));
         frame.add(settings, new Rectangle (1,4,8,2));
@@ -79,6 +82,7 @@ public class mainmenu implements MouseListener{
     @Override
     public void mouseClicked(MouseEvent e) {
         click.playEffect("Audio/click.wav");
+        bgm.stop();
         if(e.getSource()==start){
             start ng=new start();
             Point p=frame.getLocation();

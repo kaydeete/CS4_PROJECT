@@ -215,7 +215,7 @@ public class Door3 extends JFrame {
             frame = new JFrame();
             frame.setSize(900, 600);
             frame.setLayout(new BorderLayout());
-            backgroundImage = new ImageIcon("Images/d2correct.png"); /*MAKE NEW CORRECT PAGE PLSPLSPLS, then continue the story nalang plss heheee*/
+            backgroundImage = new ImageIcon("Images/d3correct.jpg");
             
             JPanel backgroundPanel = new JPanel() {
                 @Override
@@ -232,8 +232,8 @@ public class Door3 extends JFrame {
             nextButton.setFont(new Font("Segoe UI", Font.BOLD, 20));
             nextButton.addActionListener(e -> {
             
-                maze3 maze = new maze3();
-                maze.setFrame();
+                lastscene srn = new lastscene();
+                srn.setFrame();
                 frame.dispose();
                 
                 /*Change this nlng to the next part of the game*/
