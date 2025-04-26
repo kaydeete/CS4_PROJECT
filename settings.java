@@ -56,8 +56,8 @@ public class settings implements MouseListener{
         frame.setLayout(new GraphPaperLayout(new Dimension (10,10)));
         
         frame.add(quit, new Rectangle (1,1,8,2));
-        frame.add(volumei, new Rectangle (1,3,3,2));
-        frame.add(volumes, new Rectangle (2,3,9,2));
+        //frame.add(volumei, new Rectangle (1,3,3,2));
+        //frame.add(volumes, new Rectangle (2,3,9,2));
         frame.add(howtoplay, new Rectangle(1,7,8,2));
         
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
