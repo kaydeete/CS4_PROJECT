@@ -31,7 +31,6 @@ public class start implements MouseListener {
 
     public start() {
         frame = new JFrame();
-        click = new PlaySound();
 
         JPanel backgroundPanel = new JPanel() {
             private final Image gameBG = new ImageIcon("Images/cutscene1.png").getImage();
@@ -91,7 +90,7 @@ public class start implements MouseListener {
 
         frame.add(chatbox, new Rectangle(1, 9, 26, 10));
         frame.add(chatfield, new Rectangle(0, 9, 26, 2));
-        frame.add(amper, new Rectangle(5, 4, 4, 5));
+        frame.add(amper, new Rectangle(5, 4, 3, 5));
         frame.add(breadboard, new Rectangle(16, 3, 5, 4));
         frame.add(whirl, new Rectangle(16, 3, 3, 5));
 
@@ -138,18 +137,18 @@ public class start implements MouseListener {
         } else if (chatseq == 1) {
             breadboard.setVisible(true);
             amper.setVisible(true);
-            frame.add(amper, new Rectangle(12, 4, 4, 5));
+            frame.add(amper, new Rectangle(12, 4, 3, 5));
         } else if (chatseq == 2) {
             amper.setVisible(true);
             whirl.setVisible(true);
             breadboard.setVisible(true);
-            frame.add(amper, new Rectangle(15,3,4,5));
+            frame.add(amper, new Rectangle(15,3,3,5));
         }
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        click.playEffect("Audio/click.wav");
+        //click.playEffect("Audio/click.wav");
         if (e.getSource() == prevbtn) {
             if (chatseq - 1 >= 0) {
                 chatseq--;
