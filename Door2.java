@@ -171,12 +171,16 @@ class q2 implements MouseListener{
     @Override
     public void mouseClicked(MouseEvent e) {
         if (e.getSource()==ans3) {
-            new correctans();
+            new correctansdoor2();
             frame.dispose();
         } else if (e.getSource() == ans1 || e.getSource() == ans2 || e.getSource() == ans4) {
             wrong.playEffect("Audio/ticerror.wav");
             JOptionPane.showMessageDialog(frame, "Incorrect answer. Please try again.", "Wrong Answer", JOptionPane.ERROR_MESSAGE);
         }
+    }
+    
+    public static void main(String[] args) {
+        new Door2();
     }
 
     @Override
@@ -192,16 +196,31 @@ class q2 implements MouseListener{
     public void mouseExited(MouseEvent e) {}
 }
 
-class correctans {
+
+   
+
+class correctansdoor2 {
     JFrame frame;
     ImageIcon backgroundImage;
     JButton nextButton;
 
-    public correctans() {
+    public correctansdoor2() {
         frame = new JFrame();
         frame.setSize(900, 600);
         frame.setLayout(new BorderLayout());
         backgroundImage = new ImageIcon("Images/d2correct.png");
+        
+        nextButton = new JButton("Proceed to the Next Maze");
+        nextButton.setBackground(Color.WHITE);
+        nextButton.setFont(new Font("Segoe UI", Font.BOLD, 20));
+        nextButton.addActionListener(e -> {
+            
+            frame.dispose();
+                SwingUtilities.invokeLater(() -> {
+                maze3 maze = new maze3();
+                maze.setFrame();
+                });
+        });
         
         JPanel backgroundPanel = new JPanel() {
             @Override
@@ -213,15 +232,7 @@ class correctans {
         };
         backgroundPanel.setLayout(new BorderLayout());
         
-        nextButton = new JButton("Proceed to the Next Maze");
-        nextButton.setBackground(Color.WHITE);
-        nextButton.setFont(new Font("Segoe UI", Font.BOLD, 20));
-        nextButton.addActionListener(e -> {
-            
-            maze3 maze = new maze3();
-            maze.setFrame();
-            frame.dispose();
-        });
+        
 
         backgroundPanel.add(nextButton, BorderLayout.SOUTH);
         frame.setContentPane(backgroundPanel);

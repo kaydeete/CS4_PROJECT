@@ -35,6 +35,7 @@ public class maze3 implements KeyListener, MouseListener {
             1,1,1,1,1,1,1,1,1,1,1,1
         };
         currentTile = 12;
+        map[currentTile] = 3;
 
         img1 = new ImageIcon(new ImageIcon("Images/brickwall.png").getImage().getScaledInstance(130, 130, Image.SCALE_DEFAULT));
         img2 = new ImageIcon(new ImageIcon("Images/door.png").getImage().getScaledInstance(120, 100, Image.SCALE_DEFAULT));
@@ -107,9 +108,12 @@ public class maze3 implements KeyListener, MouseListener {
         else if (keyCode == KeyEvent.VK_RIGHT && currentTile % 12 < 11 && (map[currentTile + 1] == 0 || map[currentTile + 1] == 2)) currentTile += 1;
         
         if (prevTile != currentTile) {
-            if (map[currentTile]==2) {
+            if (map[currentTile] == 2) {
                 frame.dispose();
-                new Door3();
+                SwingUtilities.invokeLater(() -> {
+                    new Door3();
+                });
+                return; // ADD THIS to stop further movement!
             }
             map[prevTile] = 0;
             map[currentTile] = 36;

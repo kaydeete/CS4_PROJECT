@@ -26,13 +26,13 @@ public class settings implements MouseListener{
         img=new ImageIcon(quiticon.getImage().getScaledInstance(300, 200, Image.SCALE_DEFAULT));
         quit=new JLabel(img);
         
-        /*volumeicon=new ImageIcon("Images/soundvis.png");    //259x80 px
+        volumeicon=new ImageIcon("Images/soundvis.png");    //259x80 px
         img=new ImageIcon(volumeicon.getImage().getScaledInstance(300, 200, Image.SCALE_DEFAULT));
         volumei=new JLabel(img);
         
         volumeslider=new ImageIcon("Images/soundslider.png");    //259x80 px
         img=new ImageIcon(volumeslider.getImage().getScaledInstance(900, 600, Image.SCALE_DEFAULT));
-        volumes=new JLabel(img);*/
+        volumes=new JLabel(img);
         
         howtoplayicon=new ImageIcon("Images/howtoplay.png");    //259x80 px
         img=new ImageIcon(howtoplayicon.getImage().getScaledInstance(300, 200, Image.SCALE_DEFAULT));
@@ -56,8 +56,8 @@ public class settings implements MouseListener{
         frame.setLayout(new GraphPaperLayout(new Dimension (10,10)));
         
         frame.add(quit, new Rectangle (1,1,8,2));
-        //frame.add(volumei, new Rectangle (1,3,3,2));
-        //frame.add(volumes, new Rectangle (2,3,9,2));
+        frame.add(volumei, new Rectangle (1,3,3,2));
+        frame.add(volumes, new Rectangle (2,3,9,2));
         frame.add(howtoplay, new Rectangle(1,7,8,2));
         
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);

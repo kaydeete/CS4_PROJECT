@@ -84,14 +84,19 @@ class Door1 implements MouseListener{
     @Override
     public void mouseClicked(MouseEvent e) {
         if (e.getSource()==ans1) {
-            new correctans();
+            new correctansdoor1();
             frame.dispose();
         } else if (e.getSource() == ans2 || e.getSource() == ans3) {
             wrong.playEffect("Audio/ticerror.wav");
             JOptionPane.showMessageDialog(frame, "Incorrect answer. Please try again.", "Wrong Answer", JOptionPane.ERROR_MESSAGE);
         }
     }
+    
+    public static void main(String[] args) {
+        new Door1();
+    }
 
+    
     @Override
     public void mousePressed(MouseEvent e) {}
 
@@ -106,12 +111,12 @@ class Door1 implements MouseListener{
 }
 
 
-class correctans {
+class correctansdoor1 {
     JFrame frame;
     ImageIcon backgroundImage;
     JButton nextButton;
 
-    public correctans() {
+    public correctansdoor1() {
         frame = new JFrame();
         frame.setSize(900, 600);
         frame.setLayout(new BorderLayout());
@@ -131,9 +136,12 @@ class correctans {
         nextButton.setBackground(Color.WHITE);
         nextButton.setFont(new Font("Segoe UI", Font.BOLD, 20));
         nextButton.addActionListener(e -> {
-            maze2 maze = new maze2();
-            maze.setFrame();
+            
             frame.dispose();
+                SwingUtilities.invokeLater(() -> {
+                    maze2 maze = new maze2();
+                                maze.setFrame();
+                });
         });
 
         backgroundPanel.add(nextButton, BorderLayout.SOUTH);

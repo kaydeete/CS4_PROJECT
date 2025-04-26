@@ -165,13 +165,9 @@ public class Door3 extends JFrame {
             timer.cancel();
             }
             
-            new correctans();
+            new correctansdoor3();
             dispose();
         }
-    }
-
-    public static void main(String[] args) {
-        new Door3();
     }
 
     // Inner Background Panel Class
@@ -204,14 +200,16 @@ public class Door3 extends JFrame {
         }
     }
     
+    public static void main(String[] args) {
+        new Door3();
+    }
     
- 
-    class correctans {
+    class correctansdoor3 {
         JFrame frame;
         ImageIcon backgroundImage;
         JButton nextButton;
         
-        public correctans() {
+        public correctansdoor3() {
             frame = new JFrame();
             frame.setSize(900, 600);
             frame.setLayout(new BorderLayout());

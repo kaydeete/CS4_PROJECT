@@ -35,15 +35,17 @@ public class maze2 implements KeyListener, MouseListener {
             1,1,1,1,1,1,1,1,1,1,1,1
         };
         currentTile = 36;
+        map[currentTile] = 3;
 
         img1 = new ImageIcon(new ImageIcon("Images/brickwall.png").getImage().getScaledInstance(130, 130, Image.SCALE_DEFAULT));
         img2 = new ImageIcon(new ImageIcon("Images/door.png").getImage().getScaledInstance(120, 100, Image.SCALE_DEFAULT));
         amper = new ImageIcon(new ImageIcon("Images/amper.png").getImage().getScaledInstance(100, 60, Image.SCALE_DEFAULT));
 
         hinticon2a=new ImageIcon(new ImageIcon("Images/wirea.png").getImage().getScaledInstance(130, 130, Image.SCALE_DEFAULT));
-        hint2a=new JLabel(img);
         hinticon2b=new ImageIcon(new ImageIcon("Images/wireb.png").getImage().getScaledInstance(130, 130, Image.SCALE_DEFAULT));
-        hint2b=new JLabel(img);
+        
+        hint2a = new JLabel(hinticon2a);
+        hint2b = new JLabel(hinticon2b);
         
         // Initialize JLabel array
         mapL = new JLabel[map.length];
@@ -107,12 +109,15 @@ public class maze2 implements KeyListener, MouseListener {
         else if (keyCode == KeyEvent.VK_RIGHT && currentTile % 12 < 11 && (map[currentTile + 1] == 0 || map[currentTile + 1] == 2)) currentTile += 1;
         
         if (prevTile != currentTile) {
-            if (map[currentTile]==2) {
+            if (map[currentTile] == 2) {
                 frame.dispose();
-                new Door2();
+                SwingUtilities.invokeLater(() -> {
+                    new Door2();
+                });
+                return; // ADD THIS to stop further movement!
             }
             map[prevTile] = 0;
-            map[currentTile] = 36;
+            map[currentTile] = 3;
             mapL[prevTile].setBackground(Color.WHITE);
             //mapL[currentTile].setBackground(Color.GREEN);
             mapL[prevTile].setIcon(null);
